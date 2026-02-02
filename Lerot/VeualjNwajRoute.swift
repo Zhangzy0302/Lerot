@@ -22,3 +22,7 @@ struct VeualjNwajRoute: View {
         }
     }
 }
+
+#Preview {
+    VeualjNwajRoute()
+}

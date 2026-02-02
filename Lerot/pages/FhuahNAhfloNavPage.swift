@@ -2,13 +2,25 @@
 import SwiftUI
 
 struct FhuahNAhfloNavPage: View {
+    
+    @State private var fluahcCurrentIndex: Int = 0
+    
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            GeometryReader { geo in
+              Image("cponlzna_main_bg")
+                .resizable()
+                .frame(maxHeight: .infinity)
+                .clipped()
+                .ignoresSafeArea()
+            }
+            
         }
-        .padding()
     }
+}
+
+#Preview {
+    FhuahNAhfloNavPage()
 }
