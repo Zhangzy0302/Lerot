@@ -20,14 +20,16 @@ struct HaudjzahMessagePage:View {
                                     Text("Lumina")
                                         .font(LerWifaTheme.LerotFont.baigo(20))
                                     Spacer()
-                                    Text("Lumina")
+                                    Text("03:52 PM")
                                         .font(LerWifaTheme.LerotFont.miSans(12))
                                 }
                                 Text("Greetings! Any new cosplay plans?")
                                     .font(LerWifaTheme.LerotFont.miSans(14))
+                                    .lineLimit(1)
                                     .foregroundColor(Color(red: 51/255, green: 51/255, blue: 51/255))
                             }
                         }.padding(20)
+                            .border(Color(red: 229 / 255, green: 229 / 255, blue: 229 / 255), width: 1)
                     }
                 }
             }.frame(maxWidth: .infinity, maxHeight: .infinity).background(
