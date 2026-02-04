@@ -111,3 +111,70 @@ struct SlantedTopRoundedRect: Shape {
         return path
     }
 }
+
+func delay(_ seconds: Double) async {
+  try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+}
+
+struct NaciaDialog<Content: View>: View {
+
+  @Binding var naicaIsPresented: Bool
+  let content: Content
+
+  init(
+    naicaIsPresented: Binding<Bool>,
+    @ViewBuilder content: () -> Content
+  ) {
+    self._naicaIsPresented = naicaIsPresented
+    self.content = content()
+  }
+
+  var body: some View {
+    if naicaIsPresented {
+      ZStack {
+        // 背景遮罩
+        Color.black.opacity(0.7)
+          .ignoresSafeArea()
+          .onTapGesture {
+              naicaIsPresented = false
+          }
+
+        // 弹框内容
+        content
+          .transition(.scale.combined(with: .opacity))
+          .animation(.easeOut(duration: 0.25), value: naicaIsPresented)
+      }
+
+    }
+  }
+}
+
+struct NaciaBottomSheet<Content: View>: View {
+
+  @Binding var isPresented: Bool
+  let content: Content
+
+  init(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) {
+    self._isPresented = isPresented
+    self.content = content()
+  }
+
+  var body: some View {
+    if isPresented {
+      ZStack {
+        Color.black.opacity(0.7)
+          .ignoresSafeArea()
+          .onTapGesture {
+            isPresented = false
+          }
+
+        VStack {
+          Spacer()
+
+          content
+        }.animation(.easeOut(duration: 0.25), value: isPresented)
+      }
+
+    }
+  }
+}

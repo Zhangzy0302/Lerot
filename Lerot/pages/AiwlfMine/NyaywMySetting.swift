@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NyaywMySetting: View {
     
-    @Binding var appPath: NavigationPath
+    
     
     @State private var nywashIsShowDeleteAccount: Bool = false
     
@@ -26,31 +26,37 @@ struct NyaywMySetting: View {
                 VNauwAUWTopBar()
                 VStack(spacing: 20) {
                     ForEach(0...5, id: \.self) {
-                        NyaywSettingItem(appPath: $appPath,nyaysIsShowDialog: $nywashIsShowDeleteAccount, nyaywIndex: $0)
+                        NyaywSettingItem(nyaysIsShowDialog: $nywashIsShowDeleteAccount, nyaywIndex: $0)
                     }
                 }.padding(.horizontal, 20)
                     .padding(.top, 12)
             }
-        }
+            NaciaDialog(naicaIsPresented: $nywashIsShowDeleteAccount) {
+                SwbauDeleteAccount(swbauIsShow: $nywashIsShowDeleteAccount)
+            }
+        }.navigationBarHidden(true)
     }
     
     private struct NyaywSettingItem: View {
-        @Binding var appPath: NavigationPath
+        @EnvironmentObject var nyaysNavi: NavigationManager
+        
         @Binding var nyaysIsShowDialog: Bool
         let nyaywIndex: Int
         
         func nyayawSettingGo() {
             switch nyaywIndex {
             case 0:
-                appPath.append(VeulaNwiAppRoute.editInfo)
+                nyaysNavi.push(VeulaNwiAppRoute.editInfo)
             case 1:
-                appPath.append(VeulaNwiAppRoute.myBlacklist)
+                nyaysNavi.push(VeulaNwiAppRoute.myBlacklist)
             case 2:
-                appPath.append(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/privacy"))
+                nyaysNavi.push(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/privacy"))
             case 3:
-                appPath.append(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/users"))
+                nyaysNavi.push(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/users"))
             case 4:
                 nyaysIsShowDialog = true
+            case 5:
+                nyaysNavi.popToRoot()
             default:
                 return
             }

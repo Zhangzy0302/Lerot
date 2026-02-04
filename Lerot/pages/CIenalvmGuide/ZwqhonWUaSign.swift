@@ -1,7 +1,14 @@
 import SwiftUI
 
+enum ZwiaqhonSignPageStatus: Hashable {
+   case zwiaaLoagin
+    case zwiaaSignUp
+    case zwiaaForgotPwd
+}
+
 struct ZwqhonWUaSign: View {
-  @Binding var appPath: NavigationPath
+    @EnvironmentObject var ciwaNavi: NavigationManager
+    @State private var zwqhonCurrentStatus: ZwiaqhonSignPageStatus
 
   @State private var zwiajjaEmail: String = ""
   @State private var zwiajjaPassword: String = ""
@@ -10,7 +17,11 @@ struct ZwqhonWUaSign: View {
   @FocusState private var zwiafjIsFocused_1: Bool
   @FocusState private var zwiafjIsFocused_2: Bool
   @FocusState private var zwiafjIsFocused_3: Bool
-
+    
+    init(initialStatus: ZwiaqhonSignPageStatus) {
+        self._zwqhonCurrentStatus = State(initialValue: initialStatus)
+    }
+    
   var body: some View {
     ZStack(alignment: .top) {
       GeometryReader { geo in
@@ -35,7 +46,17 @@ struct ZwqhonWUaSign: View {
             ZwialjInput(inputText: $zwiajjaRepassword, ziwaIsFocus: $zwiafjIsFocused_3,
                         zwialjTitle: "Password:", zwialjPlaceholder: "Enter password")
         }
+          HStack{
+              Spacer()
+              Text("FORGOT?")
+                  .font(LerWifaTheme.LerotFont.baigo(16))
+                  .padding(.top, 20)
+          }
           
+          RyyeuaButton(ryyeuaWidth: 233, ryyeuaHeight: 57, ryyeuaText: "Sign in", ryyeuaFontSize: 24, ryyeaAction: {
+              ciwaNavi.popToRoot()
+              ciwaNavi.push(VeulaNwiAppRoute.mainNav)
+          })
       }.padding(.horizontal, 20)
         VNauwAUWTopBar()
     }.navigationBarHidden(true)
@@ -57,30 +78,27 @@ struct ZwqhonWUaSign: View {
               Text(zwialjTitle)
                 .font(LerWifaTheme.LerotFont.baigo(18))
                 .foregroundColor(LerWifaTheme.Color.mainPurple)
-              TextField(zwialjPlaceholder, text: $inputText)
-                    .focused($ziwaIsFocus)
-                    .font(LerWifaTheme.LerotFont.miSans(14))
-                    .textInputAutocapitalization(.never)
-                    .tint(.black)
+                ZStack(alignment: .leading){
+                    TextField("", text: $inputText)
+                          .focused($ziwaIsFocus)
+                          .font(LerWifaTheme.LerotFont.miSans(14))
+                          .textInputAutocapitalization(.never)
+                          .tint(.white)
+                          .font(LerWifaTheme.LerotFont.miSans(14))
+                          .foregroundColor(.white)
+                    if(!ziwaIsFocus){
+                        Text(zwialjPlaceholder)
+                            .font(LerWifaTheme.LerotFont.miSans(14))
+                            .foregroundColor(.white)
+                    }
+                    
+                }
                 .padding(.horizontal, 14)
                 .padding(.vertical, 10)
                 .background(Color(red: 1, green: 6 / 255, blue: 211 / 255).opacity(0.13))
                 .cornerRadius(10)
-                .font(LerWifaTheme.LerotFont.miSans(14))
-                .foregroundColor(.white)
+                
             }
         }
     }
-}
-
-struct Cinlkajd: View {
-  @State private var appPath = NavigationPath()
-
-  var body: some View {
-    ZwqhonWUaSign(appPath: $appPath)
-  }
-}
-
-#Preview {
-  Cinlkajd()
 }

@@ -1,17 +1,20 @@
-//
-//  LerotApp.swift
-//  Lerot
-//
-//  Created by yangyang on 2026/2/2.
-//
 
 import SwiftUI
 
 @main
 struct LerotApp: App {
+    @State private var leriadIsShowBlock: Bool = false
+    @StateObject private var naviManager: NavigationManager = NavigationManager()
+    
   var body: some Scene {
     WindowGroup {
-        VeualjNwajRoute()
+        ZStack{
+            VeualjNwajRoute(vealkIsShowBLock: $leriadIsShowBlock)
+            NaciaDialog(naicaIsPresented: $leriadIsShowBlock){
+                WYofavNaReportBlock()
+            }
+            LealoeoHUDView()
+        }.environmentObject(naviManager)
     }
   }
 }

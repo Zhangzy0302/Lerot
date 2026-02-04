@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct EwtaohNAgaUserPage: View {
-    
+    @EnvironmentObject var ewaitNavi: NavigationManager
     
     var body: some View {
         GeometryReader{geo in
@@ -48,14 +48,17 @@ struct EwtaohNAgaUserPage: View {
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(.white)
-                                    
                             )
+                            .onTapGesture {
+                                ewaitNavi.push(VeulaNwiAppRoute.myWallet)
+                            }
                     }.padding(.horizontal, 34)
-                        .padding(.top, 12)
-                }.frame(height: 278)
+                        .padding(.top, 12 + geo.safeAreaInsets.top)
+                }.frame(height: 278 + geo.safeAreaInsets.top)
+                    .ignoresSafeArea()
                 VNauwAUWTopBar() {
                     Button(action: {
-                        
+                        ewaitNavi.push(VeulaNwiAppRoute.mySetting)
                     }) {
                         Image("cponlzna_setting")
                             .resizable()
@@ -67,6 +70,3 @@ struct EwtaohNAgaUserPage: View {
     }
 }
 
-#Preview {
-    EwtaohNAgaUserPage()
-}

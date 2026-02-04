@@ -4,12 +4,12 @@ import SwiftUI
 struct FhuahNAhfloNavPage: View {
     
     @State private var fluahcCurrentIndex: Int = 0
-    @Binding var appPath: NavigationPath
+    @EnvironmentObject var fhuchaNavi: NavigationManager
     
     func fhcuanzlChangePage() -> AnyView {
         switch fluahcCurrentIndex {
         case 0:
-          return AnyView(CwiHAkmeajHomePage())
+            return AnyView(CwiHAkmeajHomePage())
         case 1:
             return AnyView(HGwgakhGHaDiscoverPage())
         case 2:
@@ -88,16 +88,4 @@ struct FhuahNAhfloNavPage: View {
             }
         }
     }
-}
-
-struct VUNALJ: View {
-  @State private var appPath = NavigationPath()
-
-  var body: some View {
-      FhuahNAhfloNavPage(appPath: $appPath)
-  }
-}
-
-#Preview {
-    VUNALJ()
 }

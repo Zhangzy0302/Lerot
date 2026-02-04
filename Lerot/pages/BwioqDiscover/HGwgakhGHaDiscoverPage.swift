@@ -2,6 +2,8 @@
 import SwiftUI
 
 struct HGwgakhGHaDiscoverPage: View {
+    @EnvironmentObject var hggajNavi: NavigationManager
+    
     var body: some View {
         GeometryReader{geo in
             VStack(spacing: 0) {
@@ -108,8 +110,4 @@ struct HGwgakhGHaDiscoverPage: View {
             }.padding(.horizontal, 20)
         }
     }
-}
-
-#Preview {
-    HGwgakhGHaDiscoverPage()
 }

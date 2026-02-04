@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct CbuaoiAwhgmGuidePage: View {
-  @Binding var appPath: NavigationPath
   @AppStorage("ucwiaxIsAgree") var ucwiaxIsAgree: Bool = false
+    @EnvironmentObject private var cbuaoNavi: NavigationManager
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -32,7 +32,11 @@ struct CbuaoiAwhgmGuidePage: View {
           .padding(.bottom, 53)
         VStack(alignment: .trailing, spacing: 0) {
           Button(action: {
-
+              if(!UWhwbvnzAppState.ucwiaxIsAgree){
+                  LealoeoHUD.toast("Please read and agree to the agreement first")
+                  return
+              }
+              cbuaoNavi.push(VeulaNwiAppRoute.sign(vealcStatus: ZwiaqhonSignPageStatus.zwiaaLoagin))
           }) {
             HStack(spacing: 28) {
               Image("cponlzna_email")
@@ -54,7 +58,11 @@ struct CbuaoiAwhgmGuidePage: View {
           }.padding(.bottom, 20)
 
           Button(action: {
-
+              if(!UWhwbvnzAppState.ucwiaxIsAgree){
+                  LealoeoHUD.toast("Please read and agree to the agreement first")
+                  return
+              }
+              
           }) {
             HStack(spacing: 46) {
               Image("cponlzna_user")
@@ -80,11 +88,17 @@ struct CbuaoiAwhgmGuidePage: View {
             Text("Sign up")
               .font(LerWifaTheme.LerotFont.miSans(14))
               .underline()
+              .onTapGesture {
+                  if(!UWhwbvnzAppState.ucwiaxIsAgree){
+                      LealoeoHUD.toast("Please read and agree to the agreement first")
+                      return
+                  }
+                  cbuaoNavi.push(VeulaNwiAppRoute.sign(vealcStatus: ZwiaqhonSignPageStatus.zwiaaSignUp))
+              }
           }.padding(.top, 13)
         }
 
         HStack {
-
           Button(action: {
             withAnimation(.easeInOut) {
               ucwiaxIsAgree = !ucwiaxIsAgree
@@ -94,16 +108,23 @@ struct CbuaoiAwhgmGuidePage: View {
               .foregroundColor(LerWifaTheme.Color.mainPurple)
           }
           HStack(spacing: 0) {
-            Text("Agree with  ")
+            Text("Agree with ")
               .font(LerWifaTheme.LerotFont.miSans(14))
             Text("User Agreement")
               .font(LerWifaTheme.LerotFont.miSans(14))
               .underline()
+              .onTapGesture {
+                  cbuaoNavi.push(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/users"))
+              }
             Text(" and ")
               .font(LerWifaTheme.LerotFont.miSans(14))
             Text("Privacy Policy")
               .font(LerWifaTheme.LerotFont.miSans(14))
               .underline()
+              .onTapGesture {
+                  cbuaoNavi.push(VeulaNwiAppRoute.agreementWeb(webUrl: "https://app.ul5exwgd.link/privacy"))
+              
+              }
 
           }
         }.padding(.top, 24)
@@ -111,16 +132,4 @@ struct CbuaoiAwhgmGuidePage: View {
         .padding(.bottom, 20)
     }
   }
-}
-
-struct WIlacPreview: View {
-  @State private var appPath = NavigationPath()
-
-  var body: some View {
-    CbuaoiAwhgmGuidePage(appPath: $appPath)
-  }
-}
-
-#Preview {
-  WIlacPreview()
 }

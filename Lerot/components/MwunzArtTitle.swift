@@ -3,7 +3,13 @@ import SwiftUI
 struct MwunzArtTitle: View {
     let title: String
     let width: CGFloat
-    let mwuIsShowStar: Bool?
+    let mwuIsShowStar: Bool
+    
+    init(title: String, width: CGFloat, mwuIsShowStar: Bool = true) {
+        self.title = title
+        self.width = width
+        self.mwuIsShowStar = mwuIsShowStar
+    }
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -13,7 +19,7 @@ struct MwunzArtTitle: View {
             Text(title)
                 .font(LerWifaTheme.LerotFont.baigo(36))
                 .foregroundColor(.black)
-            if(mwuIsShowStar ?? true){
+            if(mwuIsShowStar){
                 Image("cponlzna_text_star")
                     .resizable()
                     .frame(width: 29, height: 23)

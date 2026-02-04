@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CwiHAkmeajHomePage: View {
+    @EnvironmentObject var ciwaNavi: NavigationManager
+    
     var body: some View {
         VStack{
             HStack {
@@ -64,10 +66,6 @@ struct CwiHAkmeajHomePage: View {
                 ).padding(.top, 32)
             }.padding(.horizontal, 20)
                 .padding(.bottom, 10)
-        }
+        }.navigationBarHidden(true)
     }
-}
-
-#Preview {
-    CwiHAkmeajHomePage()
 }

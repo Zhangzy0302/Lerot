@@ -1,10 +1,21 @@
 import SwiftUI
 
 struct RyyeuaButton: View {
+    let ryyeuaWidth: CGFloat
+    let ryyeuaHeight: CGFloat
     let ryyeuaText: String
-    let ryyeuaFontSize: CGFloat?
-    let ryyeuaIsGradient: Bool?
+    let ryyeuaFontSize: CGFloat
+    let ryyeuaIsGradient: Bool
     let ryyeaAction: () -> Void
+    
+    init(ryyeuaWidth: CGFloat = 193, ryyeuaHeight: CGFloat = 56,ryyeuaText: String, ryyeuaFontSize: CGFloat = 16, ryyeuaIsGradient: Bool = true, ryyeaAction: @escaping () -> Void) {
+        self.ryyeuaWidth = ryyeuaWidth
+        self.ryyeuaHeight = ryyeuaHeight
+        self.ryyeuaText = ryyeuaText
+        self.ryyeuaFontSize = ryyeuaFontSize
+        self.ryyeuaIsGradient = ryyeuaIsGradient
+        self.ryyeaAction = ryyeaAction
+    }
     
     var body: some View {
         Button(action: {
@@ -14,14 +25,14 @@ struct RyyeuaButton: View {
                 .fill(Color.clear)
                 .background(
                     ZStack{
-                        if(ryyeuaIsGradient ?? true){
+                        if(ryyeuaIsGradient){
                             LerWifaTheme.Color.buttonGradient
                         }else{
                             LerWifaTheme.Color.mainPurple
                         }
                     }.cornerRadius(66)
                 )
-                .frame(width: 193, height: 56)
+                .frame(width: ryyeuaWidth, height: ryyeuaHeight)
                 // ⬆️ 上内阴影
                 .overlay(
                     RoundedRectangle(cornerRadius: 66)
@@ -43,7 +54,7 @@ struct RyyeuaButton: View {
                         )
                 ).overlay{
                     Text(ryyeuaText)
-                        .font(LerWifaTheme.LerotFont.baigo(ryyeuaFontSize ?? 16))
+                        .font(LerWifaTheme.LerotFont.baigo(ryyeuaFontSize))
                         .foregroundColor(.white)
                 }
         }
