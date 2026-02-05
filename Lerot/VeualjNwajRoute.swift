@@ -13,20 +13,38 @@ enum VeulaNwiAppRoute: Hashable {
     case myWallet
     
     // user
-    case bejadlUserPage
+    case bejadlUserPage(userId: Int, isMine: Bool)
     case wanvlzReportPage
     
     // chat
     case viqoanChatRoom
+    
+    // video
+    case woinbiVideoDetail
+    
+    // record
+    case rinxbmRecordHistory
+    case potsnaRecordUpload
 }
 
 struct VeualjNwajRoute: View {
     @EnvironmentObject private var navManager: NavigationManager
     @Binding var vealkIsShowBLock: Bool
     
+    private let storage = LerotStorageManager.shared
+    
     var body: some View {
         NavigationStack(path: $navManager.path) {
-            CbuaoiAwhgmGuidePage().navigationDestination(for: VeulaNwiAppRoute.self) { route in
+            Group {
+                let cqialmm = storage.getCurrentUserId()
+                
+                if(cqialmm == 7700) {
+                    CbuaoiAwhgmGuidePage()
+                }else {
+                    FhuahNAhfloNavPage()
+                }
+            }
+            .navigationDestination(for: VeulaNwiAppRoute.self) { route in
                 switch route {
                 case .guide:
                     CbuaoiAwhgmGuidePage()
@@ -48,14 +66,23 @@ struct VeualjNwajRoute: View {
                     OwuqcWallet()
                     
                 // user
-                case .bejadlUserPage:
-                    EwtaohNAgaUserPage()
+                case .bejadlUserPage(let userID, let isMine):
+                    EwtaohNAgaUserPage(ewtaohnUserId: userID, ewtaohnIsMinePage: isMine)
                 case .wanvlzReportPage:
                     IwbnaLcwReportPage()
                     
                     // chat
                 case .viqoanChatRoom:
                     TuyancWyvzChatRoom(turyajIsShowBLock: $vealkIsShowBLock)
+                    
+                // video
+                case .woinbiVideoDetail:
+                    PwiancAUhVideoDetail(pwainzcIsShowBlock: $vealkIsShowBLock)
+                // record
+                case .rinxbmRecordHistory:
+                    OwzmwpdRecordHistory()
+                case .potsnaRecordUpload:
+                    MrlnzlaUploadRecord()
                 }
                 
             }

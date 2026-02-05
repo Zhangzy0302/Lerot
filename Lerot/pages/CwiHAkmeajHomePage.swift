@@ -11,7 +11,7 @@ struct CwiHAkmeajHomePage: View {
     @EnvironmentObject var ciwaNavi: NavigationManager
     
     var body: some View {
-        VStack{
+        VStack(spacing: 0){
             HStack {
                 MwunzArtTitle(title: "LEROT", width: 105)
                 Spacer()
@@ -20,6 +20,8 @@ struct CwiHAkmeajHomePage: View {
                         Image("cponlzna_record_hisotry")
                             .resizable()
                             .frame(width: 18, height: 18)
+                    }.onTapGesture {
+                        ciwaNavi.push(VeulaNwiAppRoute.rinxbmRecordHistory)
                     }
                     
             }.padding(.horizontal, 20)

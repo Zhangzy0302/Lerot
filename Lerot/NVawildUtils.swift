@@ -178,3 +178,24 @@ struct NaciaBottomSheet<Content: View>: View {
     }
   }
 }
+
+struct NvawildNoData: View {
+    let nwaiTopPadding: CGFloat
+    let nwaiBottomPadding: CGFloat
+    
+    init(nwaiTopPadding: CGFloat, nwaiBottomPadding: CGFloat = 34) {
+        self.nwaiTopPadding = nwaiTopPadding
+        self.nwaiBottomPadding = nwaiBottomPadding
+    }
+    var body: some View {
+        HStack{
+            Spacer()
+            Image("cponlzna_null_data")
+                .resizable()
+                .frame(width: 107, height: 111)
+                .padding(.top, nwaiTopPadding)
+                .padding(.bottom, nwaiBottomPadding)
+            Spacer()
+        }
+    }
+}

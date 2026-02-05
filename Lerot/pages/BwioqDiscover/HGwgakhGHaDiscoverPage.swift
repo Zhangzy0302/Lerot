@@ -68,11 +68,11 @@ struct HGwgakhGHaDiscoverPage: View {
                 }.frame(height: 197).padding(.horizontal, 20)
                 HguanzaRecommendVideosGrid()
             }
-        }
+        }.navigationBarHidden(true)
     }
     
     private struct HguanzaRecommendVideosGrid: View {
-        
+        @EnvironmentObject var hgwaANavi: NavigationManager
         private let ghzojaGridColums: [GridItem] = [GridItem(.flexible()),GridItem(.flexible())]
         
         var body: some View {
@@ -106,6 +106,9 @@ struct HGwgakhGHaDiscoverPage: View {
                                 .lineLimit(2)
                         }.padding(10)
                     }.frame(height: 197)
+                        .onTapGesture {
+                            hgwaANavi.push(VeulaNwiAppRoute.woinbiVideoDetail)
+                        }
                 }
             }.padding(.horizontal, 20)
         }

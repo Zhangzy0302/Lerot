@@ -18,8 +18,31 @@ struct ZwqhonWUaSign: View {
   @FocusState private var zwiafjIsFocused_2: Bool
   @FocusState private var zwiafjIsFocused_3: Bool
     
+    @EnvironmentObject var userVm: LwianzBAwaUserViewModel
+    
     init(initialStatus: ZwiaqhonSignPageStatus) {
         self._zwqhonCurrentStatus = State(initialValue: initialStatus)
+    }
+    
+    var zwiancTopTitle: String {
+        switch zwqhonCurrentStatus {
+        case .zwiaaLoagin:
+            return "Sign In"
+        case .zwiaaSignUp:
+            return "Sign Up"
+        case .zwiaaForgotPwd:
+            return "forget password"
+        }
+    }
+    var zwiancButtonText: String {
+        switch zwqhonCurrentStatus {
+        case .zwiaaLoagin:
+            return "Sign In"
+        case .zwiaaSignUp:
+            return "Sign up"
+        case .zwiaaForgotPwd:
+            return "Savek"
+        }
     }
     
   var body: some View {
@@ -33,7 +56,7 @@ struct ZwqhonWUaSign: View {
           .ignoresSafeArea()
       }
       VStack {
-        Text("sign in")
+        Text(zwiancTopTitle)
           .font(LerWifaTheme.LerotFont.neoneon(36))
           .foregroundColor(LerWifaTheme.Color.mainPurple)
           .padding(.top, 72)
@@ -43,19 +66,60 @@ struct ZwqhonWUaSign: View {
                         zwialjTitle: "Email:", zwialjPlaceholder: "Enter email address")
             ZwialjInput(inputText: $zwiajjaPassword, ziwaIsFocus: $zwiafjIsFocused_2,
                         zwialjTitle: "Password:", zwialjPlaceholder: "Enter password")
-            ZwialjInput(inputText: $zwiajjaRepassword, ziwaIsFocus: $zwiafjIsFocused_3,
-                        zwialjTitle: "Password:", zwialjPlaceholder: "Enter password")
+            if(zwqhonCurrentStatus != .zwiaaLoagin) {
+                ZwialjInput(inputText: $zwiajjaRepassword, ziwaIsFocus: $zwiafjIsFocused_3,
+                            zwialjTitle: "Password:", zwialjPlaceholder: "Enter password")
+            }
+            
         }
-          HStack{
-              Spacer()
-              Text("FORGOT?")
-                  .font(LerWifaTheme.LerotFont.baigo(16))
-                  .padding(.top, 20)
+          if(zwqhonCurrentStatus == .zwiaaLoagin) {
+              HStack{
+                  Spacer()
+                  Text("FORGOT?")
+                      .font(LerWifaTheme.LerotFont.baigo(16))
+                      .padding(.top, 20)
+                      .onTapGesture {
+                          withAnimation(.easeOut) {
+                              zwqhonCurrentStatus = .zwiaaForgotPwd
+                          }
+                      }
+              }
           }
           
-          RyyeuaButton(ryyeuaWidth: 233, ryyeuaHeight: 57, ryyeuaText: "Sign in", ryyeuaFontSize: 24, ryyeaAction: {
-              ciwaNavi.popToRoot()
-              ciwaNavi.push(VeulaNwiAppRoute.mainNav)
+          
+          RyyeuaButton(ryyeuaWidth: 233, ryyeuaHeight: 57, ryyeuaText: zwiancButtonText, ryyeuaFontSize: 24, ryyeaAction: {
+              if(zwiajjaEmail.isEmpty || zwiajjaPassword.isEmpty || (zwqhonCurrentStatus == ZwiaqhonSignPageStatus.zwiaaLoagin ? false: zwiajjaRepassword.isEmpty)) {
+                  LealoeoHUD.toast("The input box cannot be empty")
+                  return
+              }
+              switch zwqhonCurrentStatus {
+              case .zwiaaLoagin:
+                  let iqonlaMatchUser = userVm.loginByEmailAndPassword(email: zwiajjaEmail, password: zwiajjaPassword)
+                  if(iqonlaMatchUser == nil) {
+                      LealoeoHUD.error("Email or password error")
+                      return
+                  }
+              case .zwiaaSignUp:
+                  if zwiajjaPassword != zwiajjaRepassword {
+                      LealoeoHUD.error("Inconsistent repeated password input")
+                      return
+                  }
+                  let owqknmaNewUser: LwianzBAwaUser? = userVm.register(email: zwiajjaEmail, password: zwiajjaPassword)
+                  if owqknmaNewUser == nil {
+                      LealoeoHUD.error("Email already exists")
+                      return
+                  }
+              case .zwiaaForgotPwd:
+                  return
+              }
+              Task{
+                  LealoeoHUD.showLoading()
+                  await delay(0.7)
+                  LealoeoHUD.hideLoading()
+                  ciwaNavi.popToRoot()
+                  ciwaNavi.push(VeulaNwiAppRoute.mainNav)
+              }
+              
           })
       }.padding(.horizontal, 20)
         VNauwAUWTopBar()
@@ -83,13 +147,16 @@ struct ZwqhonWUaSign: View {
                           .focused($ziwaIsFocus)
                           .font(LerWifaTheme.LerotFont.miSans(14))
                           .textInputAutocapitalization(.never)
-                          .tint(.white)
+                          .tint(.black)
                           .font(LerWifaTheme.LerotFont.miSans(14))
-                          .foregroundColor(.white)
-                    if(!ziwaIsFocus){
+                          .foregroundColor(.black)
+                    if(!ziwaIsFocus || inputText.isEmpty){
                         Text(zwialjPlaceholder)
                             .font(LerWifaTheme.LerotFont.miSans(14))
                             .foregroundColor(.white)
+                            .onTapGesture {
+                                ziwaIsFocus = true
+                            }
                     }
                     
                 }

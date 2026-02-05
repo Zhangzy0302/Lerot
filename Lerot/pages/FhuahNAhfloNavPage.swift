@@ -5,6 +5,9 @@ struct FhuahNAhfloNavPage: View {
     
     @State private var fluahcCurrentIndex: Int = 0
     @EnvironmentObject var fhuchaNavi: NavigationManager
+    @EnvironmentObject var fhuchaUserVM: LwianzBAwaUserViewModel
+    
+    private var fhuaStorage = LerotStorageManager.shared
     
     func fhcuanzlChangePage() -> AnyView {
         switch fluahcCurrentIndex {
@@ -15,7 +18,7 @@ struct FhuahNAhfloNavPage: View {
         case 2:
             return AnyView(HaudjzahMessagePage())
         case 3:
-            return AnyView(EwtaohNAgaUserPage())
+            return AnyView(EwtaohNAgaUserPage(ewtaohnUserId: fhuaStorage.getCurrentUserId(), ewtaohnIsMinePage: true))
         default:
             return AnyView(CwiHAkmeajHomePage())
         }
