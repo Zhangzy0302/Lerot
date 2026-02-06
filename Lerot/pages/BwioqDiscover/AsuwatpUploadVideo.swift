@@ -43,11 +43,12 @@ struct AsuwatpUploadVideo: View {
                                 .foregroundColor(.black)
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.white)
+                                .frame(width: 92, height: 108)
                                 .overlay{
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
                                 }.overlay{
-                                    Image(systemName: "plus.circle")
+                                    Image(systemName: "plus")
                                         .font(.system(size: 20))
                                         .foregroundColor(LerWifaTheme.Color.mainPurple)
                                 }

@@ -1,9 +1,4 @@
-//
-//  NyaywMySetting.swift
-//  Lerot
-//
-//  Created by yangyang on 2026/2/3.
-//
+
 
 import SwiftUI
 
@@ -31,9 +26,10 @@ struct NyaywMySetting: View {
                 }.padding(.horizontal, 20)
                     .padding(.top, 12)
             }
-            NaciaDialog(naicaIsPresented: $nywashIsShowDeleteAccount) {
-                SwbauDeleteAccount(swbauIsShow: $nywashIsShowDeleteAccount)
+            if(nywashIsShowDeleteAccount){
+                SwbauDeleteAccount(swbauIsShow: $nywashIsShowDeleteAccount).transition(.opacity)
             }
+            
         }.navigationBarHidden(true)
     }
     

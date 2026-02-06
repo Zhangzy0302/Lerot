@@ -68,6 +68,7 @@ struct CwiHAkmeajHomePage: View {
                 ).padding(.top, 32)
             }.padding(.horizontal, 20)
                 .padding(.bottom, 10)
+                .padding(.top, 6)
         }.navigationBarHidden(true)
     }
 }

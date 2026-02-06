@@ -20,6 +20,7 @@ struct KalfwalxImage: View {
     self.KalfwalxHeight = KalfwalxHeight
     self.KalfwalxIsCircle = KalfwalxIsCircle
     self.KalfwalxContentMode = KalfwalxContentMode
+      
   }
 
   var body: some View {
@@ -75,6 +76,8 @@ extension KalfwalxImage {
         @unknown default:
           placeholderView()
         }
+          
+          
       }
 
     }

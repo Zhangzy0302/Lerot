@@ -198,7 +198,7 @@ final class LwianzBAwaUserViewModel: ObservableObject {
   }
 
   // 修改用户信息
-  func editUserInfo(name: String, aboutMe: String, avatar: String) {
+  func editUserInfo(name: String, avatar: String) {
     storage.updateUser(uid: currentUser!.lwianzBAwaUserId) { user in
       var newUser: LwianzBAwaUser = user
       newUser.lwianzBAwaUserName = name

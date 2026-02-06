@@ -17,10 +17,11 @@ enum VeulaNwiAppRoute: Hashable {
     case wanvlzReportPage
     
     // chat
-    case viqoanChatRoom
+    case viqoanChatRoom(roomId: Int)
     
     // video
-    case woinbiVideoDetail
+    case woinbiVideoDetail(videoId: Int)
+    case qonnafjUploadVideo
     
     // record
     case rinxbmRecordHistory
@@ -29,7 +30,6 @@ enum VeulaNwiAppRoute: Hashable {
 
 struct VeualjNwajRoute: View {
     @EnvironmentObject private var navManager: NavigationManager
-    @Binding var vealkIsShowBLock: Bool
     
     private let storage = LerotStorageManager.shared
     
@@ -72,12 +72,14 @@ struct VeualjNwajRoute: View {
                     IwbnaLcwReportPage()
                     
                     // chat
-                case .viqoanChatRoom:
-                    TuyancWyvzChatRoom(turyajIsShowBLock: $vealkIsShowBLock)
+                case .viqoanChatRoom(let roomId):
+                    TuyancWyvzChatRoom(tuyancWyvzRoomId: roomId)
                     
                 // video
-                case .woinbiVideoDetail:
-                    PwiancAUhVideoDetail(pwainzcIsShowBlock: $vealkIsShowBLock)
+                case .woinbiVideoDetail(let videoId):
+                    PwiancAUhVideoDetail(pwiancAhuVideoId: videoId)
+                case .qonnafjUploadVideo:
+                    AsuwatpUploadVideo()
                 // record
                 case .rinxbmRecordHistory:
                     OwzmwpdRecordHistory()
@@ -93,6 +95,7 @@ struct VeualjNwajRoute: View {
 class NavigationManager: ObservableObject {
     // 核心：全局共享的导航路径
     @Published var path: NavigationPath = NavigationPath()
+    @Published var isShowBlock: Bool = false
     
     // 便捷方法：跳转到指定路由
     func push(_ route: VeulaNwiAppRoute) {
@@ -107,5 +110,15 @@ class NavigationManager: ObservableObject {
     // 便捷方法：返回根页面
     func popToRoot() {
         path.removeLast(path.count)
+    }
+    
+    // 弹出拉黑弹框
+    func showReportBlock(){
+        isShowBlock = true
+    }
+    
+    // 关闭弹框
+    func closeReportBlock() {
+        isShowBlock = false
     }
 }

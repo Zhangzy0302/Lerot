@@ -118,31 +118,29 @@ func delay(_ seconds: Double) async {
 
 struct NaciaDialog<Content: View>: View {
 
-  @Binding var naicaIsPresented: Bool
+    @EnvironmentObject var navManager: NavigationManager
   let content: Content
 
   init(
-    naicaIsPresented: Binding<Bool>,
     @ViewBuilder content: () -> Content
   ) {
-    self._naicaIsPresented = naicaIsPresented
     self.content = content()
   }
 
   var body: some View {
-    if naicaIsPresented {
+    if navManager.isShowBlock {
       ZStack {
         // 背景遮罩
         Color.black.opacity(0.7)
           .ignoresSafeArea()
           .onTapGesture {
-              naicaIsPresented = false
+              navManager.closeReportBlock()
           }
 
         // 弹框内容
         content
           .transition(.scale.combined(with: .opacity))
-          .animation(.easeOut(duration: 0.25), value: naicaIsPresented)
+          .animation(.easeOut(duration: 0.25), value: navManager.isShowBlock)
       }
 
     }
@@ -151,28 +149,27 @@ struct NaciaDialog<Content: View>: View {
 
 struct NaciaBottomSheet<Content: View>: View {
 
-  @Binding var isPresented: Bool
+    @EnvironmentObject var navManager: NavigationManager
   let content: Content
 
-  init(isPresented: Binding<Bool>, @ViewBuilder content: () -> Content) {
-    self._isPresented = isPresented
+  init(@ViewBuilder content: () -> Content) {
     self.content = content()
   }
 
   var body: some View {
-    if isPresented {
+      if navManager.isShowBlock {
       ZStack {
         Color.black.opacity(0.7)
           .ignoresSafeArea()
           .onTapGesture {
-            isPresented = false
+              navManager.closeReportBlock()
           }
 
         VStack {
           Spacer()
 
           content
-        }.animation(.easeOut(duration: 0.25), value: isPresented)
+        }.animation(.easeOut(duration: 0.25), value: navManager.isShowBlock)
       }
 
     }

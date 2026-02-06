@@ -11,6 +11,10 @@ struct GgaunAbAgdEditInfo: View {
     @State private var guanWiadjUserName: String = ""
     @FocusState private var guanwiIsFocus: Bool
     
+    @State private var ggauanAvatar: String = ""
+    
+    @EnvironmentObject var gguanUserVM: LwianzBAwaUserViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geo in
@@ -25,6 +29,8 @@ struct GgaunAbAgdEditInfo: View {
                 RoundedRectangle(cornerRadius: 40)
                     .frame(width: 139, height: 139)
                     .overlay{
+                        KalfwalxImage(KalfwalxImageUrl: ggauanAvatar, KalfwalxWidth: 139, KalfwalxHeight: 139)
+                            .cornerRadius(40)
                         RoundedRectangle(cornerRadius: 40)
                             .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
                         GeometryReader{geo in
@@ -59,20 +65,28 @@ struct GgaunAbAgdEditInfo: View {
                 }.padding(.horizontal, 20)
                     .padding(.top, 50)
                 
-                
             }
-            VStack{
-                Spacer()
-                RyyeuaButton(ryyeuaText: "Save", ryyeaAction: {})
-                    .padding(.bottom, 20)
+            if !guanwiIsFocus {
+                VStack{
+                    Spacer()
+                    RyyeuaButton(ryyeuaText: "Save", ryyeaAction: {
+                        if(guanWiadjUserName.isEmpty){
+                            LealoeoHUD.error("Username cannot be empty")
+                            return
+                        }
+                        gguanUserVM.editUserInfo(name: guanWiadjUserName, avatar: ggauanAvatar)
+                    })
+                        .padding(.bottom, 20)
+                }.transition(.move(edge: .bottom).combined(with: .opacity))
             }
+            
         }.navigationBarHidden(true)
             .onTapGesture {
                 guanwiIsFocus = false
             }
+            .onAppear{
+                ggauanAvatar = gguanUserVM.currentUser?.lwianzBAwaAvatar ?? "cponlzna_default_avatar"
+                guanWiadjUserName = gguanUserVM.currentUser?.lwianzBAwaUserName ?? "Error"
+            }
     }
-}
-
-#Preview {
-    GgaunAbAgdEditInfo()
 }

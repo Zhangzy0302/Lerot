@@ -4,9 +4,11 @@ struct VyualmaOiajVideo: Codable, Identifiable, Equatable {
 
   let vyualmaOiajWorkId: Int
   var vyualmaOiajCreatorId: Int
+    var vyualmaOiajTitle: String
   var vyualmaOiajTextContent: String
   var vyualmaOiajVideoUrl: String
   var vyualmaOiajVideoCover: String
+    var vyualmaOiajLikeCount: Int
   var vyualmaOiajDate: Date
 
   var id: Int { vyualmaOiajWorkId }
@@ -68,12 +70,12 @@ final class VyualmaOiajVideoViewModel: ObservableObject {
   }
 
   // 添加新作品
-    func addNewWork(textContent: String, videoUrl: String, videoCover: String) -> Int {
+    func addNewWork(title: String, textContent: String, videoUrl: String, videoCover: String) -> Int {
     let postUserId: Int = storage.getCurrentUserId()
     getAllWorks()
     let newWorkId = allWorks.count
 
-      let newWork: VyualmaOiajVideo = VyualmaOiajVideo(vyualmaOiajWorkId: newWorkId, vyualmaOiajCreatorId: postUserId, vyualmaOiajTextContent: textContent, vyualmaOiajVideoUrl: videoUrl, vyualmaOiajVideoCover: videoCover, vyualmaOiajDate: Date())
+        let newWork: VyualmaOiajVideo = VyualmaOiajVideo(vyualmaOiajWorkId: newWorkId, vyualmaOiajCreatorId: postUserId, vyualmaOiajTitle: title, vyualmaOiajTextContent: textContent, vyualmaOiajVideoUrl: videoUrl, vyualmaOiajVideoCover: videoCover, vyualmaOiajLikeCount: 0, vyualmaOiajDate: Date())
     storage.addWork(newWork)
     getAllNotBlockWorks()
     return newWorkId

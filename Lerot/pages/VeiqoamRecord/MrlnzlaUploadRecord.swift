@@ -72,7 +72,17 @@ struct MrlnzlaUploadRecord: View {
                             Text("Picture:")
                                 .font(LerWifaTheme.LerotFont.baigo(18))
                                 .foregroundColor(.black)
-                            NbykzwTextFiled(nbykzInputText: $mrlnalWantToSay, nbykzIsFocus: $mrlanxIsFocus_2, nbykzPlaceholder: "Enter...", nbykzHeight: 132)
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.white)
+                                .frame(width: 92, height: 108)
+                                .overlay{
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
+                                }.overlay{
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 20))
+                                        .foregroundColor(LerWifaTheme.Color.mainPurple)
+                                }
                         }
                     }.padding(.horizontal, 20)
                 }

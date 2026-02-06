@@ -6,21 +6,25 @@ struct FhuahNAhfloNavPage: View {
     @State private var fluahcCurrentIndex: Int = 0
     @EnvironmentObject var fhuchaNavi: NavigationManager
     @EnvironmentObject var fhuchaUserVM: LwianzBAwaUserViewModel
-    
+
     private var fhuaStorage = LerotStorageManager.shared
     
-    func fhcuanzlChangePage() -> AnyView {
+    @ViewBuilder
+    func fhcuanzlChangePage() -> some View {
         switch fluahcCurrentIndex {
         case 0:
-            return AnyView(CwiHAkmeajHomePage())
+            CwiHAkmeajHomePage()
         case 1:
-            return AnyView(HGwgakhGHaDiscoverPage())
+            HGwgakhGHaDiscoverPage()
         case 2:
-            return AnyView(HaudjzahMessagePage())
+            HaudjzahMessagePage()
         case 3:
-            return AnyView(EwtaohNAgaUserPage(ewtaohnUserId: fhuaStorage.getCurrentUserId(), ewtaohnIsMinePage: true))
+            EwtaohNAgaUserPage(
+                ewtaohnUserId: fhuaStorage.getCurrentUserId(),
+                ewtaohnIsMinePage: true
+            )
         default:
-            return AnyView(CwiHAkmeajHomePage())
+            CwiHAkmeajHomePage()
         }
     }
     
@@ -74,9 +78,7 @@ struct FhuahNAhfloNavPage: View {
         
         var body: some View {
             Button(action: {
-                withAnimation(.easeOut) {
-                    fluazCurrentIndex = fhuanIndex
-                }
+                fluazCurrentIndex = fhuanIndex
             }) {
                 GeometryReader{geo in
                     VStack {

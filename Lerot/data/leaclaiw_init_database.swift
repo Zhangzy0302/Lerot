@@ -184,7 +184,62 @@ extension LerotStorageManager {
   private func initializeWorksIfNeeded() {
     guard storage.data(forKey: Keys.vyualmaOiajWorks) == nil else { return }
 
-    let vyualmaOiajWorks: [VyualmaOiajVideo] = []
+    let vyualmaOiajWorks: [VyualmaOiajVideo] = [
+        VyualmaOiajVideo(
+        vyualmaOiajWorkId: 0,
+         vyualmaOiajCreatorId: 0,
+         vyualmaOiajTitle: "Ambient music performance",
+         vyualmaOiajTextContent: "Playing the violin in this setting has a unique charm.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_0.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_0.png",
+        vyualmaOiajLikeCount: 397,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        VyualmaOiajVideo(
+        vyualmaOiajWorkId: 1,
+         vyualmaOiajCreatorId: 1,
+         vyualmaOiajTitle: "The sound of the violin in the snowfield",
+         vyualmaOiajTextContent: "Playing the violin on the vast snowy ground gives the music a sense of emptiness.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_1.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_1.png",
+        vyualmaOiajLikeCount: 727,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_700)),
+        VyualmaOiajVideo(
+        vyualmaOiajWorkId: 2,
+         vyualmaOiajCreatorId: 2,
+         vyualmaOiajTitle: "A melody that heals all the exhaustion.",
+         vyualmaOiajTextContent: "Using the sound of the violin to communicate with the world, each note is a gentle expression.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_2.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_2.png",
+        vyualmaOiajLikeCount: 986,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        VyualmaOiajVideo(
+            vyualmaOiajWorkId: 3,
+         vyualmaOiajCreatorId: 3,
+         vyualmaOiajTitle: "A wonderful night",
+         vyualmaOiajTextContent: "May everyone who hears this melody be treated with kindness.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_3.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_3.png",
+            vyualmaOiajLikeCount: 657,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        VyualmaOiajVideo(
+        vyualmaOiajWorkId: 4,
+         vyualmaOiajCreatorId: 4,
+         vyualmaOiajTitle: "Daily practice",
+         vyualmaOiajTextContent: "Practice the violin seriously and live seriously.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_4.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_4.png",
+        vyualmaOiajLikeCount: 1397,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        VyualmaOiajVideo(
+        vyualmaOiajWorkId: 5,
+         vyualmaOiajCreatorId: 5,
+         vyualmaOiajTitle: "Playing the violin freely",
+         vyualmaOiajTextContent: "The sound of the violin is the outlet for emotions.",
+         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_5.mp4",
+         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_5.png",
+        vyualmaOiajLikeCount: 297,
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600))
+    ]
     save(vyualmaOiajWorks, forKey: Keys.vyualmaOiajWorks)
   }
 

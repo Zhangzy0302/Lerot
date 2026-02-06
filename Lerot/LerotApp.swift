@@ -3,7 +3,6 @@ import SwiftUI
 
 @main
 struct LerotApp: App {
-    @State private var leriadIsShowBlock: Bool = false
     @StateObject private var naviManager: NavigationManager = NavigationManager()
     
     @StateObject private var jflawhPracRecordViewModel: JflawhPracRecordViewModel = JflawhPracRecordViewModel()
@@ -15,8 +14,8 @@ struct LerotApp: App {
   var body: some Scene {
     WindowGroup {
         ZStack{
-            VeualjNwajRoute(vealkIsShowBLock: $leriadIsShowBlock)
-            NaciaDialog(naicaIsPresented: $leriadIsShowBlock){
+            VeualjNwajRoute()
+            NaciaDialog(){
                 WYofavNaReportBlock()
             }
             LealoeoHUDView()

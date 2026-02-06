@@ -120,7 +120,7 @@ struct ZwqhonWUaSign: View {
                   ciwaNavi.push(VeulaNwiAppRoute.mainNav)
               }
               
-          })
+          }).padding(.top, 100)
       }.padding(.horizontal, 20)
         VNauwAUWTopBar()
     }.navigationBarHidden(true)
@@ -150,7 +150,7 @@ struct ZwqhonWUaSign: View {
                           .tint(.black)
                           .font(LerWifaTheme.LerotFont.miSans(14))
                           .foregroundColor(.black)
-                    if(!ziwaIsFocus || inputText.isEmpty){
+                    if(!ziwaIsFocus && inputText.isEmpty){
                         Text(zwialjPlaceholder)
                             .font(LerWifaTheme.LerotFont.miSans(14))
                             .foregroundColor(.white)

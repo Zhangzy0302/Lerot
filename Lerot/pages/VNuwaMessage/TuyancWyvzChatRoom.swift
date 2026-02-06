@@ -2,7 +2,8 @@ import SwiftUI
 
 struct TuyancWyvzChatRoom: View {
     @FocusState private var truryIsFocus: Bool
-    @Binding var turyajIsShowBLock: Bool
+    @EnvironmentObject var tuyanNavi: NavigationManager
+    let tuyancWyvzRoomId: Int
     
     var body: some View {
         GeometryReader{geo in
@@ -24,7 +25,8 @@ struct TuyancWyvzChatRoom: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(height: 6)
                             }.onTapGesture {
-                                turyajIsShowBLock = true
+                                
+                                tuyanNavi.showReportBlock()
                             }
                     }
                     
