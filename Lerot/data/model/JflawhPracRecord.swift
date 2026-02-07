@@ -6,12 +6,14 @@ struct JflawhPracRecord: Codable, Identifiable, Equatable {
   var jflawhPracRecordUserId: Int
   var jflawhPracRecordImage: String
   var jflawhPracRecordText: String
+  var jflawhPracRecordStatus: Int
   var jflawhPracRecordDate: Date
 
   enum CodingKeys: String, CodingKey {
     case jflawhPracRecordUserId
     case jflawhPracRecordImage
     case jflawhPracRecordText
+    case jflawhPracRecordStatus
     case jflawhPracRecordDate
   }
 }
@@ -21,32 +23,42 @@ final class JflawhPracRecordViewModel: ObservableObject {
 
   @Published var myRecord: [JflawhPracRecord] = []
 
-    private let storage: LerotStorageManager = LerotStorageManager.shared
+  private let storage: LerotStorageManager = LerotStorageManager.shared
 
   func getMyRecord() {
-    let cnealjcw: [JflawhPracRecord] = storage.getMoiveScriptRecord()
+    let cnealjcw: [JflawhPracRecord] = storage.getViolinRecord()
     myRecord = cnealjcw.filter {
       $0.jflawhPracRecordUserId == storage.getCurrentUserId()
     }
   }
 
-func deleteMyRecord(workId: UUID) {
-    storage.deleteMoiveScriptRecord(workId)
+  // 获取今天的记录
+  func getTodayRecord() -> [JflawhPracRecord] {
+    let cnealjcw: [JflawhPracRecord] = storage.getViolinRecord()
+    return cnealjcw.filter {
+      $0.jflawhPracRecordUserId == storage.getCurrentUserId() &&
+        Calendar.current.isDateInToday($0.jflawhPracRecordDate)
+    }
+  }
+
+  func deleteMyRecord(workId: UUID) {
+    storage.deleteViolinRecord(workId)
     getMyRecord()
   }
 
   func clearMyRecord(userId: Int) {
-    storage.deleteMoiveScriptRecordByUserId(userId)
+    storage.deleteViolinRecordByUserId(userId)
     getMyRecord()
   }
 
   // 添加
-  func addMyRecord(_ cnwianz: String, image: String) {
-    storage.addMoiveScriptRecord(
+  func addMyRecord(_ cnwianz: String, image: String, status: Int) {
+    storage.addViolinRecord(
       JflawhPracRecord(
         jflawhPracRecordUserId: storage.getCurrentUserId(),
         jflawhPracRecordImage: image,
-         jflawhPracRecordText: cnwianz,
+        jflawhPracRecordText: cnwianz,
+        jflawhPracRecordStatus: status,
         jflawhPracRecordDate: Date()
       ))
     getMyRecord()

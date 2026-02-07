@@ -6,6 +6,11 @@ struct SwbauDeleteAccount: View {
     var body: some View {
         ZStack(alignment: .center) {
             Color.black.opacity(0.5).ignoresSafeArea()
+                .onTapGesture {
+                    withAnimation {
+                       swbauIsShow = false
+                   }
+                }
             ZStack(alignment: .top){
                 Image("cponlzna_dialog_yellow")
                     .resizable()
@@ -18,7 +23,9 @@ struct SwbauDeleteAccount: View {
                                 .foregroundColor(.white)
                             HStack(spacing: 13){
                                 Button(action: {
-                                    swbauIsShow = false
+                                    withAnimation {
+                                        swbauIsShow = false
+                                    }
                                 }) {
                                     Text("Cancel")
                                         .font(LerWifaTheme.LerotFont.baigo(18))
@@ -52,6 +59,6 @@ struct SwbauDeleteAccount: View {
                     .frame(width: 123, height: 148)
                     .offset(x: 0, y: -110)
             }
-        }.transition(.opacity)
+        }
     }
 }

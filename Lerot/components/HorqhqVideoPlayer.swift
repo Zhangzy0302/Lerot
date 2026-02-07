@@ -9,7 +9,7 @@ struct HorqhqVideoPlayer: View {
     @State private var player: AVPlayer?
     @State private var isPlaying = false
     @State private var aspectRatio: CGFloat = 16 / 9
-    
+    @State private var endObserver: NSObjectProtocol?
     
 
     var body: some View {
@@ -41,6 +41,9 @@ struct HorqhqVideoPlayer: View {
         }
         .onDisappear {
             player?.pause()
+            if let endObserver {
+                NotificationCenter.default.removeObserver(endObserver)
+            }
         }
     }
 }
@@ -57,21 +60,38 @@ private extension HorqhqVideoPlayer {
             return
         }
 
-        // 1️⃣ 停掉旧的
+        // 1️⃣ 停旧的
         player?.pause()
         isPlaying = false
 
-        // 2️⃣ 创建新 item
+        // 2️⃣ 移除旧监听（非常关键）
+        if let endObserver {
+            NotificationCenter.default.removeObserver(endObserver)
+            self.endObserver = nil
+        }
+
+        // 3️⃣ 创建新 item / player
         let item = AVPlayerItem(url: url)
         let newPlayer = AVPlayer(playerItem: item)
         player = newPlayer
 
-        // 3️⃣ 重新算比例
+        // 4️⃣ 注册播放结束监听
+        endObserver = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: item,
+            queue: .main
+        ) { _ in
+            newPlayer.seek(to: .zero)
+            newPlayer.play()
+            isPlaying = true
+        }
+
+        // 5️⃣ 重新算比例
         Task {
             await loadAspectRatio(from: item)
         }
 
-        // 4️⃣ 是否自动播放
+        // 6️⃣ 自动播放
         if autoPlay {
             play()
         }

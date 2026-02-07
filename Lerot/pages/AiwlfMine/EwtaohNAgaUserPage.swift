@@ -166,7 +166,7 @@ struct EwtaohNAgaUserPage: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 6)
                         }.onTapGesture {
-                            ewaitNavi.showReportBlock()
+                            ewaitNavi.showReportBlock(ewiaUserId)
                         }
                 }
             }

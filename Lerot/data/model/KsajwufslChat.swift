@@ -19,6 +19,9 @@ struct KsajwufslMessage: Codable, Identifiable, Equatable {
   var nuwzawiGhrdcjsRoomId: Int
   var ksajwufslSendUserId: Int
   var ksajwufslTextMsg: String
+  var ksajwufslImageMsg: String
+  var ksajwufslAudioMsg: String
+  var ksajwufslAudioTime: String
   var ksajwufslDate: Date
 
   enum CodingKeys: String, CodingKey {
@@ -26,6 +29,9 @@ struct KsajwufslMessage: Codable, Identifiable, Equatable {
     case ksajwufslSendUserId
     case ksajwufslTextMsg
     case ksajwufslDate
+    case ksajwufslImageMsg
+    case ksajwufslAudioMsg
+    case ksajwufslAudioTime
   }
 }
 
@@ -35,7 +41,7 @@ final class KsajwufslChatViewModel: ObservableObject {
   @Published var myChatRooms: [KsajwufslChatRoom] = []
   @Published var chatMessageList: [KsajwufslMessage] = []
 
-    private let storage = LerotStorageManager.shared
+  private let storage = LerotStorageManager.shared
 
   func getChatUserId(chatRoomId: Int) -> Int? {
     guard
@@ -75,7 +81,7 @@ final class KsajwufslChatViewModel: ObservableObject {
   }
 
   // 获取聊天用户信息
-    func getChatUserInfo(chatRoomId: Int) -> LwianzBAwaUser? {
+  func getChatUserInfo(chatRoomId: Int) -> LwianzBAwaUser? {
     guard let chatUserId = getChatUserId(chatRoomId: chatRoomId) else {
       return nil
     }

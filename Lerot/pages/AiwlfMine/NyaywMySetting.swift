@@ -4,8 +4,6 @@ import SwiftUI
 
 struct NyaywMySetting: View {
     
-    
-    
     @State private var nywashIsShowDeleteAccount: Bool = false
     
     var body: some View {
@@ -35,6 +33,7 @@ struct NyaywMySetting: View {
     
     private struct NyaywSettingItem: View {
         @EnvironmentObject var nyaysNavi: NavigationManager
+        @EnvironmentObject var vahanUserVM: LwianzBAwaUserViewModel
         
         @Binding var nyaysIsShowDialog: Bool
         let nyaywIndex: Int
@@ -52,6 +51,7 @@ struct NyaywMySetting: View {
             case 4:
                 nyaysIsShowDialog = true
             case 5:
+                vahanUserVM.logout()
                 nyaysNavi.popToRoot()
             default:
                 return

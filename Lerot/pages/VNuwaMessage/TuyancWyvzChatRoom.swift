@@ -3,10 +3,12 @@ import SwiftUI
 struct TuyancWyvzChatRoom: View {
     @FocusState private var truryIsFocus: Bool
     @EnvironmentObject var tuyanNavi: NavigationManager
+    @EnvironmentObject var turyanChatVM: KsajwufslChatViewModel
+    
     let tuyancWyvzRoomId: Int
     
     var body: some View {
-        GeometryReader{geo in
+        GeometryReader{ geo in
             ZStack(alignment: .top) {
                 ZStack{
                     LinearGradient(colors: [
@@ -25,8 +27,10 @@ struct TuyancWyvzChatRoom: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(height: 6)
                             }.onTapGesture {
+                                if let ruahUserId = turyanChatVM.getChatUserId(chatRoomId: tuyancWyvzRoomId){
+                                    tuyanNavi.showReportBlock(ruahUserId)
+                                }
                                 
-                                tuyanNavi.showReportBlock()
                             }
                     }
                     
@@ -39,50 +43,22 @@ struct TuyancWyvzChatRoom: View {
                         
                         .overlay{
                             VStack{
-                                ScrollView {
-                                    VStack{
-                                        HStack{
-                                            Text("The weather is really nice today. Do you want to go out dancing with me?")
-                                                .font(LerWifaTheme.LerotFont.miSans(16))
-                                                .foregroundColor(.black)
-                                                .padding(15)
-                                                .background(
-                                                    UnevenRoundedRectangle(
-                                                        bottomLeadingRadius: 16,
-                                                        bottomTrailingRadius: 16,
-                                                        topTrailingRadius: 16
-                                                    ).fill(LerWifaTheme.Color.mainYellow)
-                                                ).frame(maxWidth: 278)
-                                            Spacer()
-                                        }
-                                        HStack(alignment: .top){
-                                            Spacer()
-                                            Text("The weather is really nice today. Do you want to go out dancing with me?")
-                                                .font(LerWifaTheme.LerotFont.miSans(16))
-                                                .foregroundColor(.white)
-                                                .padding(15)
-                                                .background(
-                                                    UnevenRoundedRectangle(
-                                                        topLeadingRadius: 16,
-                                                        bottomLeadingRadius: 16,
-                                                        bottomTrailingRadius: 16  ).fill(LerWifaTheme.Color.mainPurple)
-                                                ).frame(maxWidth: 230)
-                                            Circle().frame(width: 50)
-                                        }
-                                    }.padding(.horizontal, 20)
-                                        .padding(.vertical, 30)
-                                }
-                                TuyahcBottomInput(turyIsFocus: $truryIsFocus)
+                                TuyancMessageList()
+                                TuyahcBottomInput(raioRoomId: tuyancWyvzRoomId, turyIsFocus: $truryIsFocus)
                                     .padding(.bottom, geo.safeAreaInsets.bottom < 10 ? 24 : 6)
-                            }
+                            }.padding(.top, 16)
                         }
                         .padding(.top, 42)
-                        HStack(spacing: 6){
-                            Circle().frame(width: 60)
-                            Text("Lumina")
-                                .font(LerWifaTheme.LerotFont.baigo(20))
-                                .foregroundColor(.white)
-                        }.padding(.leading, 20)
+                        if let tuyancWyaChatUserInfo = turyanChatVM.getChatUserInfo(chatRoomId: tuyancWyvzRoomId){
+                            HStack(spacing: 6){
+                                KalfwalxImage(KalfwalxImageUrl: tuyancWyaChatUserInfo.lwianzBAwaAvatar, KalfwalxWidth: 60
+                                              , KalfwalxHeight: 60, KalfwalxIsCircle: true)
+                                Text(tuyancWyaChatUserInfo.lwianzBAwaUserName)
+                                    .font(LerWifaTheme.LerotFont.baigo(20))
+                                    .foregroundColor(.white)
+                            }.padding(.leading, 20)
+                        }
+                        
                     }
                 }
             }
@@ -90,11 +66,98 @@ struct TuyancWyvzChatRoom: View {
             .onTapGesture {
                 truryIsFocus = false
             }
+            .onAppear{
+                turyanChatVM.getMessageListByChatId(chatRoomId: tuyancWyvzRoomId)
+                
+            }
+    }
+    
+    private struct TuyancMessageList: View {
+        @EnvironmentObject var tunaAChatVM: KsajwufslChatViewModel
+        @EnvironmentObject var tuaynUserVM: LwianzBAwaUserViewModel
+        
+        func msgSendByMe(_ sendUserId: Int) -> Bool {
+            tuaynUserVM.currentUser?.lwianzBAwaUserId == sendUserId
+        }
+        
+        var body: some View {
+            ScrollView {
+                LazyVStack(spacing: 20){
+                    ForEach(tunaAChatVM.chatMessageList) { msg in
+                        VStack{
+                            if(!msgSendByMe(msg.ksajwufslSendUserId)){
+                                HStack{
+                                    if(!msg.ksajwufslTextMsg.isEmpty){
+                                        Text(msg.ksajwufslTextMsg)
+                                            .font(LerWifaTheme.LerotFont.miSans(16))
+                                            .foregroundColor(.black)
+                                            .padding(15)
+                                            .background(
+                                                UnevenRoundedRectangle(
+                                                    bottomLeadingRadius: 16,
+                                                    bottomTrailingRadius: 16,
+                                                    topTrailingRadius: 16
+                                                ).fill(LerWifaTheme.Color.mainYellow)
+                                            ).frame(maxWidth: 278)
+                                    }
+                                    
+                                    Spacer()
+                                }
+                            }
+                            if(msgSendByMe(msg.ksajwufslSendUserId)){
+                                
+                                HStack(alignment: .top){
+                                    Spacer()
+                                    if(!msg.ksajwufslTextMsg.isEmpty){
+                                        Text(msg.ksajwufslTextMsg)
+                                            .font(LerWifaTheme.LerotFont.miSans(16))
+                                            .foregroundColor(.white)
+                                            .padding(15)
+                                            .background(
+                                                UnevenRoundedRectangle(
+                                                    topLeadingRadius: 16,
+                                                    bottomLeadingRadius: 16,
+                                                    bottomTrailingRadius: 16  ).fill(LerWifaTheme.Color.mainPurple)
+                                            ).frame(maxWidth: 230)
+                                    }
+                                    if(!msg.ksajwufslImageMsg.isEmpty){
+                                        KalfwalxImage(KalfwalxImageUrl: msg.ksajwufslImageMsg, KalfwalxWidth: 120, KalfwalxHeight: 120)
+                                            .cornerRadius(20)
+                                    }
+                                    if(!msg.ksajwufslAudioMsg.isEmpty){
+                                        Image("cponlzna_audio_msg")
+                                            .resizable()
+                                            .frame(width: 80, height: 22)
+                                            .padding(15)
+                                            .background(
+                                                UnevenRoundedRectangle(
+                                                    topLeadingRadius: 16,
+                                                    bottomLeadingRadius: 16,
+                                                    bottomTrailingRadius: 16  ).fill(LerWifaTheme.Color.mainPurple)
+                                            )
+                                    }
+                                    Circle().frame(width: 50)
+                                }
+                                
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }.padding(.horizontal, 20)
+                    .padding(.vertical, 30)
+            }
+        }
     }
     
     private struct TuyahcBottomInput:View {
+        let raioRoomId: Int
         @State private var turyInput: String = ""
         @FocusState.Binding var turyIsFocus: Bool
+        
+        @EnvironmentObject var trnzuiChatVM: KsajwufslChatViewModel
+        @EnvironmentObject var tuanUserVM: LwianzBAwaUserViewModel
         
         var body: some View {
             VStack(alignment: .leading, spacing: 20){
@@ -122,6 +185,19 @@ struct TuyancWyvzChatRoom: View {
                     Image("cponlzna_send_icon")
                         .resizable()
                         .frame(width: 40, height: 40)
+                        .onTapGesture {
+                            if(turyInput.isEmpty){
+                                return
+                            }
+                            if let myid = tuanUserVM.currentUser?.lwianzBAwaUserId {
+                                trnzuiChatVM.addMessage(sendMsg: KsajwufslMessage(nuwzawiGhrdcjsRoomId: raioRoomId, ksajwufslSendUserId: myid, ksajwufslTextMsg: turyInput, ksajwufslImageMsg: "", ksajwufslAudioMsg: "", ksajwufslAudioTime: "", ksajwufslDate: Date()))
+                            }else{
+                                LealoeoHUD.error("error")
+                                return
+                            }
+                            turyInput = ""
+                            
+                        }
                 }.padding(.horizontal, 20)
                     .padding(.vertical, 9)
                     .background(

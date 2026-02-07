@@ -6,6 +6,8 @@ struct MrlnzlaUploadRecord: View {
     @FocusState private var mrlanxIsFocus_1: Bool
     @FocusState private var mrlanxIsFocus_2: Bool
     
+    @State private var duration = Date()
+    
     let mralnStatusEmoji: [String] = [
         "cponlzna_status_0",
         "cponlzna_status_1",
@@ -67,6 +69,12 @@ struct MrlnzlaUploadRecord: View {
                                 .font(LerWifaTheme.LerotFont.baigo(18))
                                 .foregroundColor(.black)
                             NbykzwTextFiled(nbykzInputText: $mrlnalWantToSay, nbykzIsFocus: $mrlanxIsFocus_2, nbykzPlaceholder: "Enter...", nbykzHeight: 132)
+                            DatePicker(
+                                "选择时长",
+                                selection: $duration,
+                                displayedComponents: [.hourAndMinute]
+                            )
+                            .datePickerStyle(.wheel)
                         }
                         VStack(alignment: .leading, spacing: 16){
                             Text("Picture:")

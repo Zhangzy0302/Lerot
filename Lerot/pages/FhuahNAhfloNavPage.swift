@@ -51,6 +51,8 @@ struct FhuahNAhfloNavPage: View {
                     .background(.white)
             }
             
+        }.onAppear{
+            fhuchaUserVM.loadLoginUser()
         }
     }
     

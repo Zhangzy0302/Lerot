@@ -52,7 +52,7 @@ struct PwiancAUhVideoDetail: View {
                                             .font(LerWifaTheme.LerotFont.baigo(16))
                                             .foregroundColor(.white)
                                     }
-                                }.padding(.horizontal, 10)
+                                }.padding(.horizontal, 20)
                             }
                         }.padding(.bottom, 36)
                         Text(pwiancVideoInfo.vyualmaOiajTextContent)
@@ -77,7 +77,7 @@ struct PwiancAUhVideoDetail: View {
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 6)
                                 }.onTapGesture {
-                                    pwianNavi.showReportBlock()
+                                    pwianNavi.showReportBlock(pwiancVideoInfo.vyualmaOiajCreatorId)
                                 }
                         }
                         
@@ -88,7 +88,6 @@ struct PwiancAUhVideoDetail: View {
         }.navigationBarHidden(true)
             .onAppear{
                 pwiancAUhVideoModel.getWorkDetailByWorkId(workId: pwiancAhuVideoId)
-                print("videoID: \(pwiancAhuVideoId)")
             }
     }
 }

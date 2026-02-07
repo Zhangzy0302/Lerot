@@ -96,6 +96,7 @@ class NavigationManager: ObservableObject {
     // 核心：全局共享的导航路径
     @Published var path: NavigationPath = NavigationPath()
     @Published var isShowBlock: Bool = false
+    @Published var blockUserID: Int?
     
     // 便捷方法：跳转到指定路由
     func push(_ route: VeulaNwiAppRoute) {
@@ -113,7 +114,8 @@ class NavigationManager: ObservableObject {
     }
     
     // 弹出拉黑弹框
-    func showReportBlock(){
+    func showReportBlock(_ blockId: Int){
+        blockUserID = blockId
         isShowBlock = true
     }
     

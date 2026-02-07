@@ -15,7 +15,7 @@ final class LerotStorageManager {
     static let pwqomaACowComments: String = "pwqomaACowComments"
     static let ksajwufslChatRooms: String = "ksajwufslChatRooms"
     static let ksajwufslMessages: String = "ksajwufslMessages"
-    static let moiveScriptRecord: String = "moiveScriptRecord"
+    static let violinRecord: String = "violinRecord"
     static let lerotCurrentUserId: String = "lerotCurrentUserId"
   }
 }
@@ -28,7 +28,7 @@ extension LerotStorageManager {
     initializeCommentsIfNeeded()
     initializeChatRoomsIfNeeded()
     initializeMessagesIfNeeded()
-    initializeMoiveScriptRecordIfNeeded()
+    initializeViolinRecordIfNeeded()
   }
 
 }
@@ -45,7 +45,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "test@gmail.com",
         lwianzBAwaPassword: "123456",
         lwianzBAwaUserName: "Tanner",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_0.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_0.jpg",
         lwianzBAwaFollowing: [1],
         lwianzBAwaFans: [],
         lwianzBAwaBlacklist: [],
@@ -58,7 +59,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "wadadvnq@gmail.com",
         lwianzBAwaPassword: "8dh198h1",
         lwianzBAwaUserName: "Martin",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_1.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_1.jpg",
         lwianzBAwaFollowing: [],
         lwianzBAwaFans: [0],
         lwianzBAwaBlacklist: [],
@@ -71,7 +73,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "Carroll@gmail.com",
         lwianzBAwaPassword: "4731901",
         lwianzBAwaUserName: "Carroll",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_2.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_2.jpg",
         lwianzBAwaFollowing: [],
         lwianzBAwaFans: [0],
         lwianzBAwaBlacklist: [],
@@ -84,7 +87,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "Caswqeyasda@gmail.com",
         lwianzBAwaPassword: "457981071",
         lwianzBAwaUserName: "Casey",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_3.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_3.jpg",
         lwianzBAwaFollowing: [],
         lwianzBAwaFans: [0],
         lwianzBAwaBlacklist: [],
@@ -97,7 +101,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "Shirley9238@gmail.com",
         lwianzBAwaPassword: "71846198",
         lwianzBAwaUserName: "Shirley",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_4.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_4.jpg",
         lwianzBAwaFollowing: [],
         lwianzBAwaFans: [0],
         lwianzBAwaBlacklist: [],
@@ -110,7 +115,8 @@ extension LerotStorageManager {
         lwianzBAwaEmail: "Raja1ja@gmail.com",
         lwianzBAwaPassword: "2832005",
         lwianzBAwaUserName: "Raja",
-        lwianzBAwaAvatar: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_5.jpg",
+        lwianzBAwaAvatar:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_avatar_5.jpg",
         lwianzBAwaFollowing: [],
         lwianzBAwaFans: [0],
         lwianzBAwaBlacklist: [],
@@ -130,7 +136,7 @@ extension LerotStorageManager {
         lwianzBAwaWalletBalance: 0,
         lwianzBAwaLikeWorks: [],
         lwianzBAwaIsDeleted: false
-      )
+      ),
     ]
 
     save(users, forKey: Keys.lwianzBAwaUsers)
@@ -185,60 +191,74 @@ extension LerotStorageManager {
     guard storage.data(forKey: Keys.vyualmaOiajWorks) == nil else { return }
 
     let vyualmaOiajWorks: [VyualmaOiajVideo] = [
-        VyualmaOiajVideo(
+      VyualmaOiajVideo(
         vyualmaOiajWorkId: 0,
-         vyualmaOiajCreatorId: 0,
-         vyualmaOiajTitle: "Ambient music performance",
-         vyualmaOiajTextContent: "Playing the violin in this setting has a unique charm.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_0.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_0.png",
+        vyualmaOiajCreatorId: 0,
+        vyualmaOiajTitle: "Ambient music performance",
+        vyualmaOiajTextContent: "Playing the violin in this setting has a unique charm.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_0.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_0.png",
         vyualmaOiajLikeCount: 397,
         vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
-        VyualmaOiajVideo(
+      VyualmaOiajVideo(
         vyualmaOiajWorkId: 1,
-         vyualmaOiajCreatorId: 1,
-         vyualmaOiajTitle: "The sound of the violin in the snowfield",
-         vyualmaOiajTextContent: "Playing the violin on the vast snowy ground gives the music a sense of emptiness.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_1.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_1.png",
+        vyualmaOiajCreatorId: 1,
+        vyualmaOiajTitle: "The sound of the violin in the snowfield",
+        vyualmaOiajTextContent:
+          "Playing the violin on the vast snowy ground gives the music a sense of emptiness.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_1.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_1.png",
         vyualmaOiajLikeCount: 727,
         vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_700)),
-        VyualmaOiajVideo(
+      VyualmaOiajVideo(
         vyualmaOiajWorkId: 2,
-         vyualmaOiajCreatorId: 2,
-         vyualmaOiajTitle: "A melody that heals all the exhaustion.",
-         vyualmaOiajTextContent: "Using the sound of the violin to communicate with the world, each note is a gentle expression.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_2.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_2.png",
+        vyualmaOiajCreatorId: 2,
+        vyualmaOiajTitle: "A melody that heals all the exhaustion.",
+        vyualmaOiajTextContent:
+          "Using the sound of the violin to communicate with the world, each note is a gentle expression.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_2.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_2.png",
         vyualmaOiajLikeCount: 986,
         vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
-        VyualmaOiajVideo(
-            vyualmaOiajWorkId: 3,
-         vyualmaOiajCreatorId: 3,
-         vyualmaOiajTitle: "A wonderful night",
-         vyualmaOiajTextContent: "May everyone who hears this melody be treated with kindness.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_3.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_3.png",
-            vyualmaOiajLikeCount: 657,
+      VyualmaOiajVideo(
+        vyualmaOiajWorkId: 3,
+        vyualmaOiajCreatorId: 3,
+        vyualmaOiajTitle: "A wonderful night",
+        vyualmaOiajTextContent: "May everyone who hears this melody be treated with kindness.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_3.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_3.png",
+        vyualmaOiajLikeCount: 657,
         vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
-        VyualmaOiajVideo(
+      VyualmaOiajVideo(
         vyualmaOiajWorkId: 4,
-         vyualmaOiajCreatorId: 4,
-         vyualmaOiajTitle: "Daily practice",
-         vyualmaOiajTextContent: "Practice the violin seriously and live seriously.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_4.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_4.png",
+        vyualmaOiajCreatorId: 4,
+        vyualmaOiajTitle: "Daily practice",
+        vyualmaOiajTextContent: "Practice the violin seriously and live seriously.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_4.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_4.png",
         vyualmaOiajLikeCount: 1397,
         vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
-        VyualmaOiajVideo(
+      VyualmaOiajVideo(
         vyualmaOiajWorkId: 5,
-         vyualmaOiajCreatorId: 5,
-         vyualmaOiajTitle: "Playing the violin freely",
-         vyualmaOiajTextContent: "The sound of the violin is the outlet for emotions.",
-         vyualmaOiajVideoUrl: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_5.mp4",
-         vyualmaOiajVideoCover: "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_5.png",
+        vyualmaOiajCreatorId: 5,
+        vyualmaOiajTitle: "Playing the violin freely",
+        vyualmaOiajTextContent: "The sound of the violin is the outlet for emotions.",
+        vyualmaOiajVideoUrl:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_5.mp4",
+        vyualmaOiajVideoCover:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_5.png",
         vyualmaOiajLikeCount: 297,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600))
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
     ]
     save(vyualmaOiajWorks, forKey: Keys.vyualmaOiajWorks)
   }
@@ -292,7 +312,8 @@ extension LerotStorageManager {
   }
 
   func addComment(_ comment: PwqomaACowComment) {
-    var pwqomaACowComments = load([PwqomaACowComment].self, forKey: Keys.pwqomaACowComments, default: [])
+    var pwqomaACowComments = load(
+      [PwqomaACowComment].self, forKey: Keys.pwqomaACowComments, default: [])
     pwqomaACowComments.append(comment)
     save(pwqomaACowComments, forKey: Keys.pwqomaACowComments)
   }
@@ -347,7 +368,8 @@ extension LerotStorageManager {
   }
 
   func addMessage(_ msg: KsajwufslMessage) {
-    var ksajwufslMessages = load([KsajwufslMessage].self, forKey: Keys.ksajwufslMessages, default: [])
+    var ksajwufslMessages = load(
+      [KsajwufslMessage].self, forKey: Keys.ksajwufslMessages, default: [])
     ksajwufslMessages.append(msg)
     save(ksajwufslMessages, forKey: Keys.ksajwufslMessages)
   }
@@ -355,38 +377,49 @@ extension LerotStorageManager {
 
 // moive
 extension LerotStorageManager {
-  private func initializeMoiveScriptRecordIfNeeded() {
-    guard storage.data(forKey: Keys.moiveScriptRecord) == nil else { return }
-    save([JflawhPracRecord](), forKey: Keys.moiveScriptRecord)
+  private func initializeViolinRecordIfNeeded() {
+    guard storage.data(forKey: Keys.violinRecord) == nil else { return }
+    let jflawhPracRecord: [JflawhPracRecord] = [
+      JflawhPracRecord(
+        jflawhPracRecordUserId: 0,
+        jflawhPracRecordImage:
+          "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_practice.jpg",
+        jflawhPracRecordText:
+          "Good concentration, core tasks fully practiced with obvious improvement; slight instability in bow tip/root bowing, stiff finger shifting in high positions, rigid dotted rhythm handling",
+        jflawhPracRecordStatus: 3,
+        jflawhPracRecordDate: Date(timeIntervalSince1970: 1_706_418_600)
+      )
+    ]
+    save(jflawhPracRecord, forKey: Keys.violinRecord)
   }
 
-  func getMoiveScriptRecord() -> [JflawhPracRecord] {
-    load([JflawhPracRecord].self, forKey: Keys.moiveScriptRecord, default: [])
+  func getViolinRecord() -> [JflawhPracRecord] {
+    load([JflawhPracRecord].self, forKey: Keys.violinRecord, default: [])
   }
 
-  func addMoiveScriptRecord(_ history: JflawhPracRecord) {
-    var histories = load([JflawhPracRecord].self, forKey: Keys.moiveScriptRecord, default: [])
+  func addViolinRecord(_ history: JflawhPracRecord) {
+    var histories = load([JflawhPracRecord].self, forKey: Keys.violinRecord, default: [])
     histories.append(history)
-    save(histories, forKey: Keys.moiveScriptRecord)
+    save(histories, forKey: Keys.violinRecord)
   }
 
-  func deleteMoiveScriptRecord(_ workId: UUID) {
+  func deleteViolinRecord(_ workId: UUID) {
     var histories: [JflawhPracRecord] = load(
-      [JflawhPracRecord].self, forKey: Keys.moiveScriptRecord, default: [])
+      [JflawhPracRecord].self, forKey: Keys.violinRecord, default: [])
     histories.removeAll {
       $0.id == workId
     }
-    save(histories, forKey: Keys.moiveScriptRecord)
+    save(histories, forKey: Keys.violinRecord)
   }
 
   // 根据用户Id删除所有
-  func deleteMoiveScriptRecordByUserId(_ userId: Int) {
+  func deleteViolinRecordByUserId(_ userId: Int) {
     var histories: [JflawhPracRecord] = load(
-      [JflawhPracRecord].self, forKey: Keys.moiveScriptRecord, default: [])
+      [JflawhPracRecord].self, forKey: Keys.violinRecord, default: [])
     histories.removeAll {
       $0.jflawhPracRecordUserId == userId
     }
-    save(histories, forKey: Keys.moiveScriptRecord)
+    save(histories, forKey: Keys.violinRecord)
   }
 }
 

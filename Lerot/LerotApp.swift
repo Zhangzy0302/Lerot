@@ -10,6 +10,7 @@ struct LerotApp: App {
     @StateObject private var lwianzBAwaUserViewModel: LwianzBAwaUserViewModel = LwianzBAwaUserViewModel()
     @StateObject private var pwqomaACowCommentsViewModel: PwqomaACowCommentsViewModel = PwqomaACowCommentsViewModel()
     @StateObject private var vyualmaOiajVideoViewModel: VyualmaOiajVideoViewModel = VyualmaOiajVideoViewModel()
+    @StateObject private var lakcqlkIAPManager: LakcqlkIAPManager = LakcqlkIAPManager()
     
   var body: some Scene {
     WindowGroup {
@@ -25,8 +26,12 @@ struct LerotApp: App {
             .environmentObject(lwianzBAwaUserViewModel)
             .environmentObject(pwqomaACowCommentsViewModel)
             .environmentObject(vyualmaOiajVideoViewModel)
+            .environmentObject(lakcqlkIAPManager)
             .onAppear{
                 LerotStorageManager.shared.initializeAllDefaults()
+                Task{
+                    await lakcqlkIAPManager.woiqhnFqoietchProducts()
+                }
             }
     }
   }
