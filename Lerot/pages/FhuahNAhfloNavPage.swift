@@ -6,6 +6,9 @@ struct FhuahNAhfloNavPage: View {
     @State private var fluahcCurrentIndex: Int = 0
     @EnvironmentObject var fhuchaNavi: NavigationManager
     @EnvironmentObject var fhuchaUserVM: LwianzBAwaUserViewModel
+    
+    @State private var hgawagIsShowPayment: Bool = false
+    @State private var ghajIsNoMoney: Bool = false
 
     private var fhuaStorage = LerotStorageManager.shared
     
@@ -15,7 +18,9 @@ struct FhuahNAhfloNavPage: View {
         case 0:
             CwiHAkmeajHomePage()
         case 1:
-            HGwgakhGHaDiscoverPage()
+            HGwgakhGHaDiscoverPage(
+                ghajIsNoMoney: $ghajIsNoMoney, hgawagIsShowPayment: $hgawagIsShowPayment
+            )
         case 2:
             HaudjzahMessagePage()
         case 3:
@@ -38,7 +43,7 @@ struct FhuahNAhfloNavPage: View {
                 .ignoresSafeArea()
             }
             VStack(spacing: 0) {
-                GeometryReader {geo in
+                GeometryReader { geo in
                     fhcuanzlChangePage()
                         .frame(height: geo.size.height)
                 }
@@ -50,7 +55,10 @@ struct FhuahNAhfloNavPage: View {
                     .padding(.vertical, 10)
                     .background(.white)
             }
-            
+            if(hgawagIsShowPayment){
+                ProeuzPayment(prooeauzIsNoMoney: $ghajIsNoMoney, proeuzIsShowPayment: $hgawagIsShowPayment)
+                    .transition(.opacity)
+            }
         }.onAppear{
             fhuchaUserVM.loadLoginUser()
         }

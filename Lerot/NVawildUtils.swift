@@ -33,6 +33,30 @@ enum LerWifaTheme {
   }
 }
 
+enum LocalImageManager {
+  static func saveImage(_ image: UIImage) -> String? {
+    let fileName = UUID().uuidString + ".jpg"
+    let data = image.jpegData(compressionQuality: 0.9)
+
+    guard let data else { return nil }
+
+    let documentsURL = FileManager.default.urls(
+      for: .documentDirectory,
+      in: .userDomainMask
+    ).first!
+
+    let fileURL = documentsURL.appendingPathComponent(fileName)
+
+    do {
+      try data.write(to: fileURL)
+      return fileURL.path  // ✅ 返回 String，正好给 ieujanMyAvatar 用
+    } catch {
+      print("Save image error:", error)
+      return nil
+    }
+  }
+}
+
 struct SlantedTopRoundedRect: Shape {
     var cornerRadius: CGFloat = 16
     var slantHeight: CGFloat = 20   // 左侧比右侧高多少

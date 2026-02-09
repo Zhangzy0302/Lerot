@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct OwzmwpdRecordHistory: View {
+    @EnvironmentObject var owqzwmRecordVM: JflawhPracRecordViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             GeometryReader { geo in
@@ -15,17 +17,26 @@ struct OwzmwpdRecordHistory: View {
                     MwunzArtTitle(title: "History", width: 101, mwuIsShowStar: false)
                 }
                 ScrollView {
-                    LazyVStack {
-                        ForEach(0...2, id: \.self) { i in
-                            OwauzmpsdCard()
-                        }
+                    if(owqzwmRecordVM.myRecord.isEmpty){
+                        NvawildNoData(nwaiTopPadding: 140)
+                    }else{
+                        LazyVStack {
+                            ForEach(owqzwmRecordVM.myRecord) { i in
+                                OwauzmpsdCard(owqaRecordDetail: i)
+                            }
+                        }.padding(.bottom, 40)
                     }
+                    
                 }
+            }.onAppear{
+                owqzwmRecordVM.getMyRecord()
             }
         }.navigationBarHidden(true)
     }
     
     private struct OwauzmpsdCard: View {
+        let owqaRecordDetail: JflawhPracRecord
+        
         var body: some View {
             HStack(spacing: 18){
                 VStack(spacing: 0){
@@ -47,8 +58,10 @@ struct OwzmwpdRecordHistory: View {
                 }
                 VStack(alignment: .leading, spacing: 10){
                     ZStack(alignment: .topLeading){
+                        KalfwalxImage(KalfwalxImageUrl: owqaRecordDetail.jflawhPracRecordImage, KalfwalxHeight: 273)
+                            .cornerRadius(16)
                         HStack(spacing: 10){
-                            Text("1h 30min")
+                            Text(owqaRecordDetail.jflawhPracRecordPracticeDuration)
                                 .font(LerWifaTheme.LerotFont.baigo(12))
                                 .foregroundColor(LerWifaTheme.Color.mainPurple)
                                 .padding(10)
@@ -56,7 +69,7 @@ struct OwzmwpdRecordHistory: View {
                                     RoundedRectangle(cornerRadius: 20)
                                     .fill(.white)
                                 )
-                            Text("Status: 4 points")
+                            Text("Status: \(owqaRecordDetail.jflawhPracRecordStatus + 1) points")
                                 .font(LerWifaTheme.LerotFont.baigo(12))
                                 .foregroundColor(LerWifaTheme.Color.mainYellow)
                                 .padding(10)
@@ -64,9 +77,10 @@ struct OwzmwpdRecordHistory: View {
                                     RoundedRectangle(cornerRadius: 20)
                                     .fill(.white)
                                 )
+                            Spacer()
                         }
-                    }.frame(maxHeight: .infinity)
-                    Text("When applying force from the tip of the bow, slightly increase the pressure. After slow practice, the force should be evenly distributed")
+                    }.frame(maxWidth: .infinity, maxHeight: 273, alignment: .top)
+                    Text(owqaRecordDetail.jflawhPracRecordText)
                         .font(LerWifaTheme.LerotFont.miSans(12))
                         .foregroundColor(.white.opacity(0.9))
                 }.padding(.horizontal, 10)

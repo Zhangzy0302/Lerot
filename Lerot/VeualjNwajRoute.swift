@@ -26,6 +26,9 @@ enum VeulaNwiAppRoute: Hashable {
     // record
     case rinxbmRecordHistory
     case potsnaRecordUpload
+    
+    // ai
+    case eyrskAiChat
 }
 
 struct VeualjNwajRoute: View {
@@ -85,6 +88,9 @@ struct VeualjNwajRoute: View {
                     OwzmwpdRecordHistory()
                 case .potsnaRecordUpload:
                     MrlnzlaUploadRecord()
+                // ai
+                case .eyrskAiChat:
+                    ZMwhwpAiChatRoom()
                 }
                 
             }
@@ -116,11 +122,15 @@ class NavigationManager: ObservableObject {
     // 弹出拉黑弹框
     func showReportBlock(_ blockId: Int){
         blockUserID = blockId
-        isShowBlock = true
+        withAnimation(.easeOut) {
+            isShowBlock = true
+        }
     }
     
     // 关闭弹框
     func closeReportBlock() {
-        isShowBlock = false
+        withAnimation(.easeOut) {
+            isShowBlock = false
+        }
     }
 }

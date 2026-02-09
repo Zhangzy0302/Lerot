@@ -6,6 +6,7 @@ struct EwtaohNAgaUserPage: View {
     
     @EnvironmentObject var ewiacUserVM: LwianzBAwaUserViewModel
     @EnvironmentObject var ewaitVideoModel: VyualmaOiajVideoViewModel
+    @EnvironmentObject var navi: NavigationManager
     
     var body: some View {
         GeometryReader{geo in
@@ -68,6 +69,13 @@ struct EwtaohNAgaUserPage: View {
         }.onAppear{
             ewiacUserVM.getUserInfoByUid(uid: ewtaohnUserId)
             ewaitVideoModel.getWorksByUserId(userId: ewtaohnUserId)
+            if(!ewtaohnIsMinePage){
+                guard let ewqiMyInfo = ewiacUserVM.currentUser else { return }
+                if(ewqiMyInfo.lwianzBAwaBlacklist.contains(ewtaohnUserId)){
+                    navi.pop()
+                }
+            }
+            
         }
     }
     

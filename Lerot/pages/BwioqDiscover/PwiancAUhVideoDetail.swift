@@ -5,9 +5,10 @@ struct PwiancAUhVideoDetail: View {
     @EnvironmentObject var pwianNavi: NavigationManager
     @EnvironmentObject var pwiancAUhVideoModel: VyualmaOiajVideoViewModel
     @EnvironmentObject var pwianUserVM: LwianzBAwaUserViewModel
+    @EnvironmentObject var pwainCommentVM: PwqomaACowCommentsViewModel
     
     @State private var pwianIsPalying: Bool = false
-    
+    @State private var isShowComment: Bool = false
     
     var body: some View {
         GeometryReader{geo in
@@ -48,9 +49,13 @@ struct PwiancAUhVideoDetail: View {
                                                     .resizable()
                                                     .frame(width: 22, height: 22)
                                             }
-                                        Text("99")
+                                        Text("\(pwainCommentVM.workCommentsNotBlock.count)")
                                             .font(LerWifaTheme.LerotFont.baigo(16))
                                             .foregroundColor(.white)
+                                    }.onTapGesture {
+                                        withAnimation(.easeOut) {
+                                            isShowComment = true
+                                        }
                                     }
                                 }.padding(.horizontal, 20)
                             }
@@ -82,12 +87,18 @@ struct PwiancAUhVideoDetail: View {
                         }
                         
                     }
+                    if(isShowComment){
+                        WOqouComeant(woqeuVideoId: pwiancAhuVideoId, woqueIsShowComment: $isShowComment)
+                            .transition(.move(edge: .bottom))
+                    }
+                    
                 }
             }
             
         }.navigationBarHidden(true)
             .onAppear{
                 pwiancAUhVideoModel.getWorkDetailByWorkId(workId: pwiancAhuVideoId)
+                pwainCommentVM.getCommentsNotBlockByWorkId(workId: pwiancAhuVideoId)
             }
     }
 }

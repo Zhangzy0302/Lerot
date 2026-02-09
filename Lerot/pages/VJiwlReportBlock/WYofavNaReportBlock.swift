@@ -2,6 +2,8 @@ import SwiftUI
 
 struct WYofavNaReportBlock: View {
     @EnvironmentObject var wyofajcNavi: NavigationManager
+    @EnvironmentObject var wyaofaUserVM: LwianzBAwaUserViewModel
+    
     var body: some View {
         ZStack{
             Image("cponlzna_dialog_purple")
@@ -18,15 +20,17 @@ struct WYofavNaReportBlock: View {
                                 .frame(width: 80, height: 79)
                         ).frame(width: 80, height: 79)
                     Button(action: {
+                        wyofajcNavi.closeReportBlock()
                         wyofajcNavi.push(VeulaNwiAppRoute.wanvlzReportPage)
                     }) {
                         Text("report")
                             .font(LerWifaTheme.LerotFont.baigo(20))
                             .foregroundColor(.black)
+                            .frame(width: 108, height: 50)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(LerWifaTheme.Color.mainYellow)
-                                    .frame(width: 108, height: 50)
+                                    
                             )
                     }
                 }
@@ -40,15 +44,19 @@ struct WYofavNaReportBlock: View {
                                 .frame(width: 80, height: 79)
                         ).frame(width: 80, height: 79)
                     Button(action: {
+                        if let almzblockUserId = wyofajcNavi.blockUserID {
+                            wyaofaUserVM.toggleUserIsBlocked(blockUserId: almzblockUserId)
+                            wyofajcNavi.closeReportBlock()
+                        }
                         
                     }) {
                         Text("block")
                             .font(LerWifaTheme.LerotFont.baigo(20))
                             .foregroundColor(.white)
+                            .frame(width: 108, height: 50)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
                                     .fill(LerWifaTheme.Color.mainPurple)
-                                    .frame(width: 108, height: 50)
                             )
                     }
                 }

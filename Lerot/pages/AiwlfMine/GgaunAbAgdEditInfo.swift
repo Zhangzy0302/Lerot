@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct GgaunAbAgdEditInfo: View {
     @State private var guanWiadjUserName: String = ""
     @FocusState private var guanwiIsFocus: Bool
     
     @State private var ggauanAvatar: String = ""
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var showAvatarPicker = false
     
     @EnvironmentObject var gguanUserVM: LwianzBAwaUserViewModel
     
@@ -74,13 +77,33 @@ struct GgaunAbAgdEditInfo: View {
                             LealoeoHUD.error("Username cannot be empty")
                             return
                         }
+                        LealoeoHUD.success("Edit successful")
                         gguanUserVM.editUserInfo(name: guanWiadjUserName, avatar: ggauanAvatar)
                     })
                         .padding(.bottom, 20)
                 }.transition(.move(edge: .bottom).combined(with: .opacity))
             }
             
-        }.navigationBarHidden(true)
+        }.photosPicker(
+            isPresented: $showAvatarPicker,
+            selection: $selectedItem,
+            matching: .images
+        )
+        .onChange(of: selectedItem) { item in
+            guard let item else { return }
+            
+            Task {
+                if let data = try? await item.loadTransferable(type: Data.self),
+                   let image = UIImage(data: data) {
+                    
+                    // 1️⃣ 保存到本地
+                    if let localPath = LocalImageManager.saveImage(image) {
+                        ggauanAvatar = localPath   // ✅ 赋值给头像
+                    }
+                }
+            }
+        }
+        .navigationBarHidden(true)
             .onTapGesture {
                 guanwiIsFocus = false
             }

@@ -12,6 +12,7 @@ struct IwbnaLcwReportPage: View {
     ]
     
     @State private var iwanvSeletedReason: String = ""
+    @EnvironmentObject var lwbanlNavi: NavigationManager
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -60,7 +61,12 @@ struct IwbnaLcwReportPage: View {
                     }
                 }.padding(.bottom, 80)
                 RyyeuaButton(ryyeuaText: "submit", ryyeaAction: {
-                    
+                    if(iwanvSeletedReason.isEmpty){
+                        LealoeoHUD.error("Please select the reason for reporting")
+                        return
+                    }
+                    LealoeoHUD.success("Report successful")
+                    lwbanlNavi.pop()
                 })
             }
         }.navigationBarHidden(true)
@@ -86,13 +92,7 @@ struct IwbnaLcwReportPage: View {
                         iwnakSeleted = iwanxaiReason
                     }
                 }
-            
-            
                 
         }
     }
-}
-
-#Preview {
-    IwbnaLcwReportPage()
 }

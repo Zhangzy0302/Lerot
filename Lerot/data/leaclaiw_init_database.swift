@@ -387,6 +387,7 @@ extension LerotStorageManager {
         jflawhPracRecordText:
           "Good concentration, core tasks fully practiced with obvious improvement; slight instability in bow tip/root bowing, stiff finger shifting in high positions, rigid dotted rhythm handling",
         jflawhPracRecordStatus: 3,
+        jflawhPracRecordPracticeDuration: "1h 30min",
         jflawhPracRecordDate: Date(timeIntervalSince1970: 1_706_418_600)
       )
     ]

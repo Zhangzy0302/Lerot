@@ -7,6 +7,7 @@ struct JflawhPracRecord: Codable, Identifiable, Equatable {
   var jflawhPracRecordImage: String
   var jflawhPracRecordText: String
   var jflawhPracRecordStatus: Int
+    var jflawhPracRecordPracticeDuration: String
   var jflawhPracRecordDate: Date
 
   enum CodingKeys: String, CodingKey {
@@ -14,6 +15,7 @@ struct JflawhPracRecord: Codable, Identifiable, Equatable {
     case jflawhPracRecordImage
     case jflawhPracRecordText
     case jflawhPracRecordStatus
+      case jflawhPracRecordPracticeDuration
     case jflawhPracRecordDate
   }
 }
@@ -52,13 +54,14 @@ final class JflawhPracRecordViewModel: ObservableObject {
   }
 
   // 添加
-  func addMyRecord(_ cnwianz: String, image: String, status: Int) {
+    func addMyRecord(_ cnwianz: String, image: String, status: Int, duration: String) {
     storage.addViolinRecord(
       JflawhPracRecord(
         jflawhPracRecordUserId: storage.getCurrentUserId(),
         jflawhPracRecordImage: image,
         jflawhPracRecordText: cnwianz,
         jflawhPracRecordStatus: status,
+        jflawhPracRecordPracticeDuration: duration,
         jflawhPracRecordDate: Date()
       ))
     getMyRecord()

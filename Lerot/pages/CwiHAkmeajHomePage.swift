@@ -19,30 +19,35 @@ struct CwiHAkmeajHomePage: View {
 
       }.padding(.horizontal, 20)
         .padding(.top, 6)
-      ZStack {
-        SlantedTopRoundedRect(cornerRadius: 30, slantHeight: 28)
-          .fill(
-            LinearGradient(
-              colors: [
-                Color(red: 1, green: 158 / 255, blue: 240 / 255),
-                .white,
-              ], startPoint: .topTrailing, endPoint: .bottomLeading)
-          )
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-        SlantedTopRoundedRect(cornerRadius: 30, slantHeight: 15)
-          .fill(
-            LinearGradient(
-              colors: [
-                LerWifaTheme.Color.mainPurple,
-                .white,
-              ], startPoint: .topTrailing, endPoint: .bottomLeading)
-          )
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-          .padding(.top, 15)
-        CwiaAkweRecordCard()
-      }.padding(.horizontal, 20)
-        .padding(.bottom, 10)
-        .padding(.top, 6)
+        GeometryReader { geo in
+            ZStack {
+              SlantedTopRoundedRect(cornerRadius: 30, slantHeight: 28)
+                .fill(
+                  LinearGradient(
+                    colors: [
+                      Color(red: 1, green: 158 / 255, blue: 240 / 255),
+                      .white,
+                    ], startPoint: .topTrailing, endPoint: .bottomLeading)
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+              SlantedTopRoundedRect(cornerRadius: 30, slantHeight: 15)
+                .fill(
+                  LinearGradient(
+                    colors: [
+                      LerWifaTheme.Color.mainPurple,
+                      .white,
+                    ], startPoint: .topTrailing, endPoint: .bottomLeading)
+                )
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.top, 15)
+              CwiaAkweRecordCard()
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 10)
+                .padding(.top, 6)
+              
+            
+        }
     }.navigationBarHidden(true)
   }
 
@@ -51,7 +56,7 @@ struct CwiHAkmeajHomePage: View {
     @State var wilmaxDates: [Date] = []
     @State private var cwqoiaDateList: [(day: Int, weekday: String)] = []
     @EnvironmentObject var cwaiaRecord: JflawhPracRecordViewModel
-      
+      @State private var cwiahCurrentDay: Int = Calendar.current.component(.day, from: Date())
       
       @State var cwqoHaskTodayRecord: [JflawhPracRecord] = []
 
@@ -76,42 +81,36 @@ struct CwiHAkmeajHomePage: View {
 
     var body: some View {
       VStack(spacing: 0) {
-        HStack {
-          ForEach(cwqoiaDateList, id: \.self.day) { dayInfo in
-            VStack(spacing: 6) {
-              Text(dayInfo.weekday)
-                .font(LerWifaTheme.LerotFont.baigo(16))
-                .foregroundColor(.white)
-                .padding(2)
-              Text("\(dayInfo.day)")
-                .font(LerWifaTheme.LerotFont.neoneon(16))
-                .foregroundColor(.white)
-            }
-          }
-        }.padding(.bottom, 18)
+          LeraoTopDate(cwqoiaDateList: $cwqoiaDateList, cwiahCurrentDay: $cwiahCurrentDay)
           if(!cwqoHaskTodayRecord.isEmpty){
-              VStack(spacing: 0) {
+              VStack(alignment: .leading, spacing: 0) {
                   ZStack {
-                      KalfwalxImage(KalfwalxImageUrl: cwqoHaskTodayRecord[0].jflawhPracRecordImage, KalfwalxHeight: .infinity)
-                          .cornerRadius(30)
-                    HStack(spacing: 10) {
-                      Text("1h 30min")
-                        .font(LerWifaTheme.LerotFont.baigo(12))
-                        .foregroundColor(LerWifaTheme.Color.mainPurple)
-                        .padding(10)
-                        .background(
-                          RoundedRectangle(cornerRadius: 20)
-                            .fill(.white)
-                        )
-                      Text("Status: 4 points")
-                        .font(LerWifaTheme.LerotFont.baigo(12))
-                        .foregroundColor(LerWifaTheme.Color.mainYellow)
-                        .padding(10)
-                        .background(
-                          RoundedRectangle(cornerRadius: 20)
-                            .fill(.white)
-                        )
-                    }
+                      GeometryReader {geo in
+                          KalfwalxImage(KalfwalxImageUrl: cwqoHaskTodayRecord[0].jflawhPracRecordImage, KalfwalxWidth: geo.size.width, KalfwalxHeight: .infinity)
+                              .cornerRadius(30)
+                      }
+                      VStack{
+                          Spacer()
+                          HStack(spacing: 10) {
+                              Text(cwqoHaskTodayRecord[0].jflawhPracRecordPracticeDuration)
+                              .font(LerWifaTheme.LerotFont.baigo(12))
+                              .foregroundColor(LerWifaTheme.Color.mainPurple)
+                              .padding(10)
+                              .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                  .fill(.white)
+                              )
+                              Text("Status: \(cwqoHaskTodayRecord[0].jflawhPracRecordStatus + 1) points")
+                              .font(LerWifaTheme.LerotFont.baigo(12))
+                              .foregroundColor(LerWifaTheme.Color.mainYellow)
+                              .padding(10)
+                              .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                  .fill(.white)
+                              )
+                              Spacer()
+                          }
+                      }
                   }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 Text(
                     cwqoHaskTodayRecord[0].jflawhPracRecordText
@@ -143,6 +142,39 @@ struct CwiHAkmeajHomePage: View {
         }
     }
   }
+    
+    private struct LeraoTopDate: View {
+        @Binding var cwqoiaDateList: [(day: Int, weekday: String)]
+        @Binding var cwiahCurrentDay: Int
+        var body: some View {
+            HStack {
+              ForEach(cwqoiaDateList, id: \.self.day) { dayInfo in
+                VStack(spacing: 6) {
+                  Text(dayInfo.weekday)
+                    .font(LerWifaTheme.LerotFont.baigo(16))
+                    .foregroundColor(.white)
+                    .padding(2)
+                    .background(
+                        Group {
+                            if(cwiahCurrentDay == dayInfo.day){
+                                LerWifaTheme.Color.mainPurple.cornerRadius(4)
+                            }else{
+                                Color.clear
+                            }
+                        }
+                        
+                    )
+                  Text("\(dayInfo.day)")
+                    .font(LerWifaTheme.LerotFont.neoneon(16))
+                    .foregroundColor(.white)
+                }
+                  if dayInfo.day != cwqoiaDateList.last?.day {
+                              Spacer()
+                          }
+              }
+            }.padding(.bottom, 18)
+        }
+    }
     
     private struct LeraoNoRecord: View {
         

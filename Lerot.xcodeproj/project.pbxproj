@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		DDC328192F308EC900E1673F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC328182F308EC900E1673F /* Launch Screen.storyboard */; };
+		DDC360002F39F3BA00A22BD1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DDC35FFF2F39F3BA00A22BD1 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC360002F39F3BA00A22BD1 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			);
 			name = Lerot;
 			packageProductDependencies = (
+				DDC35FFF2F39F3BA00A22BD1 /* Alamofire */,
 			);
 			productName = Lerot;
 			productReference = DDC327772F30779200E1673F /* Lerot.app */;
@@ -113,6 +116,9 @@
 			);
 			mainGroup = DDC3276E2F30779200E1673F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDC327782F30779200E1673F /* Products */;
 			projectDirPath = "";
@@ -362,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDC35FFF2F39F3BA00A22BD1 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDC3276F2F30779200E1673F /* Project object */;
 }
