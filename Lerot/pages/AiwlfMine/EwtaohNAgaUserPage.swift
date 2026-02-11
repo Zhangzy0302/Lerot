@@ -43,7 +43,7 @@ struct EwtaohNAgaUserPage: View {
                                                 .font(LerWifaTheme.LerotFont.miSans(16))
                                         }.frame(maxWidth: .infinity)
                                     }.padding(.bottom, 12)
-                                    EwiaziaWalletButtons(ewqooanUserInfo: ewiqoUserInfo, ewqIsMinePage: ewtaohnIsMinePage)
+                                    EwiaziaWalletButtons(ewtaohnUserId: ewtaohnUserId, ewqooanUserInfo: ewiqoUserInfo, ewqIsMinePage: ewtaohnIsMinePage)
                                 }.padding(.horizontal, 34)
                                     .padding(.top, 12 + geo.safeAreaInsets.top)
                             }.frame(height: 278 + geo.safeAreaInsets.top)
@@ -66,20 +66,29 @@ struct EwtaohNAgaUserPage: View {
                 EwtaohbTopBar(ewiaIsMinePage: ewtaohnIsMinePage, ewiaUserId: ewtaohnUserId)
                 
             }.navigationBarHidden(true)
+                .onChange(of: navi.isShowBlock){ show in
+                    guard show == false else { return }
+                    
+                    if(!ewtaohnIsMinePage){
+                        guard let ewqiMyInfo = ewiacUserVM.currentUser else { return }
+                        if(ewqiMyInfo.lwianzBAwaBlacklist.contains(ewtaohnUserId)){
+                            
+                            DispatchQueue.main.async {
+                                navi.popToRoot()
+                                }
+                        }
+                    }
+                }
         }.onAppear{
             ewiacUserVM.getUserInfoByUid(uid: ewtaohnUserId)
             ewaitVideoModel.getWorksByUserId(userId: ewtaohnUserId)
-            if(!ewtaohnIsMinePage){
-                guard let ewqiMyInfo = ewiacUserVM.currentUser else { return }
-                if(ewqiMyInfo.lwianzBAwaBlacklist.contains(ewtaohnUserId)){
-                    navi.pop()
-                }
-            }
+            
             
         }
     }
     
     private struct EwiaziaWalletButtons: View {
+        let ewtaohnUserId: Int
         let ewqooanUserInfo: LwianzBAwaUser
         let ewqIsMinePage: Bool
         @EnvironmentObject var ewqiaUserVM: LwianzBAwaUserViewModel
@@ -111,17 +120,21 @@ struct EwtaohNAgaUserPage: View {
                         ewaitNavi.push(VeulaNwiAppRoute.myWallet)
                     }
             }else if(ewqooanUserInfo.lwianzBAwaUserId != ewqiaUserVM.currentUser?.lwianzBAwaUserId){
-                HStack(spacing: 13){
-                    Button(action: {
-                    }) {
-                        Text("+ Follow")
-                            .font(LerWifaTheme.LerotFont.baigo(18))
-                            .foregroundColor(.black)
-                            .frame(width: 120, height: 50)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(.white)
-                            )
+                HStack(spacing: 20){
+                    if let inqamMine = ewqiaUserVM.currentUser {
+                        Button(action: {
+                           ewqiaUserVM.toggleUserIsFollowed(followUserId: ewqooanUserInfo.lwianzBAwaUserId)
+                            ewqiaUserVM.getUserInfoByUid(uid: ewtaohnUserId)
+                       }) {
+                           Text(inqamMine.lwianzBAwaFollowing.contains(ewqooanUserInfo.lwianzBAwaUserId) ? "- Unfollow" : "+ Follow")
+                               .font(LerWifaTheme.LerotFont.baigo(18))
+                               .foregroundColor(.black)
+                               .frame(width: 120, height: 50)
+                               .background(
+                                   RoundedRectangle(cornerRadius: 20)
+                                       .fill(.white)
+                               )
+                       }
                     }
                     Button(action: {
                         let matchOrCreateRoom = eqoChatVM.findOrCreateChatRoom(chatUserId: ewqooanUserInfo.lwianzBAwaUserId)

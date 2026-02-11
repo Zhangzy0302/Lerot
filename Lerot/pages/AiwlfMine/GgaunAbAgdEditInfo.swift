@@ -47,6 +47,8 @@ struct GgaunAbAgdEditInfo: View {
                                     }.offset(x: 0, y: -11)
                             }.frame(width: geo.size.width, height: geo.size.height, alignment: .topTrailing)
                         }
+                    }.onTapGesture {
+                        showAvatarPicker = true
                     }.padding(.top, 40)
                 VStack(alignment: .leading, spacing: 16) {
                     Text("Username:")
@@ -80,7 +82,7 @@ struct GgaunAbAgdEditInfo: View {
                         LealoeoHUD.success("Edit successful")
                         gguanUserVM.editUserInfo(name: guanWiadjUserName, avatar: ggauanAvatar)
                     })
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 24)
                 }.transition(.move(edge: .bottom).combined(with: .opacity))
             }
             

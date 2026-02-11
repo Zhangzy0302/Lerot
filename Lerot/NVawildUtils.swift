@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 enum LerWifaTheme {
   enum Color {
@@ -55,6 +56,46 @@ enum LocalImageManager {
       return nil
     }
   }
+}
+
+final class WialnAudioRecorder: NSObject, ObservableObject {
+
+    private var recorder: AVAudioRecorder?
+    @Published var recordURL: URL?
+
+    // 开始录音
+    func startRecord() {
+        let session = AVAudioSession.sharedInstance()
+        try? session.setCategory(.playAndRecord, mode: .default)
+        try? session.setActive(true)
+
+        let url = Self.generateRecordURL()
+        recordURL = url
+
+        let settings: [String: Any] = [
+            AVFormatIDKey: kAudioFormatMPEG4AAC,
+            AVSampleRateKey: 44100,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+
+        recorder = try? AVAudioRecorder(url: url, settings: settings)
+        recorder?.prepareToRecord()
+        recorder?.record()
+    }
+
+    // 停止录音
+    func stopRecord() {
+        recorder?.stop()
+        recorder = nil
+    }
+
+    // 生成本地路径
+    static func generateRecordURL() -> URL {
+        let fileName = "wialn_record_\(Int(Date().timeIntervalSince1970)).m4a"
+        let doc = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return doc.appendingPathComponent(fileName)
+    }
 }
 
 struct SlantedTopRoundedRect: Shape {

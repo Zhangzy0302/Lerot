@@ -5,6 +5,7 @@ struct WOqouComeant: View {
     @Binding var woqueIsShowComment: Bool
     @EnvironmentObject var wquoCommentVM: PwqomaACowCommentsViewModel
     @EnvironmentObject var wqouNavi: NavigationManager
+    @EnvironmentObject var wqouUserVM: LwianzBAwaUserViewModel
     @AppStorage("lerotCurrentUserId") var wqouMyId: Int = 0
     
     @State private var wqouInput: String = ""
@@ -42,14 +43,14 @@ struct WOqouComeant: View {
                                                 .font(LerWifaTheme.LerotFont.baigo(16))
                                                 .foregroundColor(.black)
                                             Spacer()
-//                                            if(comment.pwqomaACowCommentUserId != wqouMyId){
+                                            if(comment.pwqomaACowCommentUserId != wqouMyId){
                                                 Image(systemName: "ellipsis")
                                                     .font(.system(size: 20))
                                                     .foregroundColor(.black)
                                                     .onTapGesture{
                                                         wqouNavi.showReportBlock(comment.pwqomaACowCommentUserId)
                                                     }
-//                                            }
+                                            }
                                             
                                         }
                                     }
@@ -64,58 +65,19 @@ struct WOqouComeant: View {
                                                 RoundedRectangle(cornerRadius: 20)
                                                     .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
                                             }
+                                    }.onChange(of: wqouNavi.isShowBlock) { show in
+                                        
+                                        if let wiqouMine = wqouUserVM.currentUser {
+                                            if (wiqouMine.lwianzBAwaBlacklist.contains(comment.pwqomaACowCommentUserId)){
+                                                wquoCommentVM.getCommentsNotBlockByWorkId(workId: woqeuVideoId)
+                                            }
+                                        }
                                     }
                             }
                         }
                     }.scrollIndicators(.hidden)
                 }
-                HStack{
-                    TextField("Say something...", text: $wqouInput)
-                        .focused($wquouIsFocused)
-                        .tint(.black)
-                        .font(LerWifaTheme.LerotFont.miSans(14))
-                        .foregroundColor(.black)
-                        
-                    Image("cponlzna_send_icon")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .onTapGesture{
-                            if(wqouInput.isEmpty){
-                                return
-                            }
-                            wquoCommentVM.addCommentItem(commentItem: PwqomaACowComment(pwqomaACowCommentWorkId: woqeuVideoId, pwqomaACowCommentUserId: wqouMyId, pwqomaACowCommentText: wqouInput, pwqomaACowDate: Date()))
-                            wquoCommentVM.getCommentsNotBlockByWorkId(workId: woqeuVideoId)
-                            wqouInput = ""
-                        }
-                }.padding(.horizontal, 20)
-                    .padding(.vertical, 9)
-                    .background(
-                        RoundedRectangle(cornerRadius: 29)
-                            .fill(.white)
-                            .overlay{
-                                RoundedRectangle(cornerRadius: 29)
-                                    .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
-                            }// ⬆️ 上内阴影
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 29)
-                                    .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
-                                    .blur(radius: 4)
-                                    .offset(y: 2)
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 29)
-                                    )
-                            )
-                            // ⬇️ 下内阴影
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 29)
-                                    .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
-                                    .blur(radius: 4)
-                                    .offset(y: -2)
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 29)
-                                    )
-                            )
-                    ).padding(.bottom, 20)
+                WqoianInput(woqeuVideoId: woqeuVideoId, wqouInput: $wqouInput, wquouIsFocused: $wquouIsFocused)
             }.padding(20)
                 .frame(height: 450)
                 .background(
@@ -132,6 +94,66 @@ struct WOqouComeant: View {
                 }
         }.onTapGesture {
             wquouIsFocused = false
+        }
+    }
+    
+    private struct WqoianInput: View {
+        let woqeuVideoId: Int
+        @Binding var wqouInput: String
+        @FocusState.Binding var wquouIsFocused: Bool
+        
+        @EnvironmentObject var wqouNavi: NavigationManager
+        @EnvironmentObject var wqouUserVM: LwianzBAwaUserViewModel
+        @EnvironmentObject var wquoCommentVM: PwqomaACowCommentsViewModel
+        @AppStorage("lerotCurrentUserId") var wqouMyId: Int = 0
+        var body: some View {
+            HStack{
+                TextField("Say something...", text: $wqouInput)
+                    .focused($wquouIsFocused)
+                    .tint(.black)
+                    .font(LerWifaTheme.LerotFont.miSans(14))
+                    .foregroundColor(.black)
+                    
+                Image("cponlzna_send_icon")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .onTapGesture{
+                        if(wqouInput.isEmpty){
+                            return
+                        }
+                        wquoCommentVM.addCommentItem(commentItem: PwqomaACowComment(pwqomaACowCommentWorkId: woqeuVideoId, pwqomaACowCommentUserId: wqouMyId, pwqomaACowCommentText: wqouInput, pwqomaACowDate: Date()))
+                        wquoCommentVM.getCommentsNotBlockByWorkId(workId: woqeuVideoId)
+                        wqouInput = ""
+                    }
+            }.padding(.horizontal, 20)
+                .padding(.vertical, 9)
+                .background(
+                    RoundedRectangle(cornerRadius: 29)
+                        .fill(.white)
+                        .overlay{
+                            RoundedRectangle(cornerRadius: 29)
+                                .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
+                        }// ⬆️ 上内阴影
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 29)
+                                .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
+                                .blur(radius: 4)
+                                .offset(y: 2)
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 29)
+                                )
+                        )
+                        // ⬇️ 下内阴影
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 29)
+                                .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
+                                .blur(radius: 4)
+                                .offset(y: -2)
+                                .mask(
+                                    RoundedRectangle(cornerRadius: 29)
+                                )
+                        )
+                ).padding(.bottom, 20)
         }
     }
 }

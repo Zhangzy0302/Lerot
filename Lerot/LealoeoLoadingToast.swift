@@ -94,7 +94,7 @@ struct LealoeoHUDView: View {
         .padding(.vertical, 20)
         .background(
           RoundedRectangle(cornerRadius: 20)
-            .fill(.black.opacity(0.8))
+            .fill(.black.opacity(0.9))
             .frame(width: 120, height: 120)
             .blur(radius: 6)
             .cornerRadius(20))
@@ -140,7 +140,7 @@ enum LealoeoToastType {
   var backgroundColor: Color {
     switch self {
     case .normal:
-      return .black.opacity(0.85)
+      return .black.opacity(0.9)
     case .success:
       return .green.opacity(0.9)
     case .error:

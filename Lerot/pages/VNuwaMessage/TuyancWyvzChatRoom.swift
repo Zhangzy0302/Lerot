@@ -1,5 +1,6 @@
 import SwiftUI
 import PhotosUI
+import AVFoundation
 
 struct TuyancWyvzChatRoom: View {
     @FocusState private var truryIsFocus: Bool
@@ -93,21 +94,37 @@ struct TuyancWyvzChatRoom: View {
             }
             .onAppear{
                 turyanChatVM.getMessageListByChatId(chatRoomId: tuyancWyvzRoomId)
+            }.onChange(of: tuyanNavi.isShowBlock) {show in
+                guard show == false else { return }
                 if let tuahMyInfo = turyUserVM.currentUser {
                     if let chaowan = turyanChatVM.getChatUserId(chatRoomId: tuyancWyvzRoomId) {
                         if(tuahMyInfo.lwianzBAwaBlacklist.contains(chaowan)){
-                            tuyanNavi.pop()
+                            
+                            DispatchQueue.main.async {
+                                tuyanNavi.popToRoot()
+                                }
                         }
                     }
                     
                 }
-                
             }
     }
     
     private struct TuyancMessageList: View {
         @EnvironmentObject var tunaAChatVM: KsajwufslChatViewModel
         @EnvironmentObject var tuaynUserVM: LwianzBAwaUserViewModel
+        @State private var audioPlayer: AVAudioPlayer?
+        
+        func playAudio(path: String) {
+            let url = URL(fileURLWithPath: path)
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: url)
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.play()
+            } catch {
+                print("❌ 播放失败：\(error)")
+            }
+        }
         
         func msgSendByMe(_ sendUserId: Int) -> Bool {
             tuaynUserVM.currentUser?.lwianzBAwaUserId == sendUserId
@@ -167,9 +184,11 @@ struct TuyancWyvzChatRoom: View {
                                                     topLeadingRadius: 16,
                                                     bottomLeadingRadius: 16,
                                                     bottomTrailingRadius: 16  ).fill(LerWifaTheme.Color.mainPurple)
-                                            )
+                                            ).onTapGesture {
+                                                playAudio(path: msg.ksajwufslAudioMsg)
+                                            }
                                     }
-                                    Circle().frame(width: 50)
+                                    KalfwalxImage(KalfwalxImageUrl: tuaynUserVM.currentUser?.lwianzBAwaAvatar ?? "cponlzna_default_avatar", KalfwalxWidth: 50, KalfwalxHeight: 50, KalfwalxIsCircle: true)
                                 }
                                 
                                 
@@ -196,7 +215,7 @@ struct TuyancWyvzChatRoom: View {
         
         var body: some View {
             if(turyaIsShowMic){
-                WIalnMiczc(wialmxIsShowMic: $turyaIsShowMic)
+                WIalnMiczc(wialnRoomId: raioRoomId, wialmxIsShowMic: $turyaIsShowMic)
             }else{
                 VStack(alignment: .leading, spacing: 20){
                     HStack{
@@ -208,12 +227,7 @@ struct TuyancWyvzChatRoom: View {
                             }.onTapGesture {
                                 turyaIsShowMic = true
                             }
-                        Circle().frame(width: 34)
-                            .overlay{
-                                Image("cponlzna_picture")
-                                    .resizable()
-                                    .frame(width: 14, height: 14)
-                            }
+                        
                     }
                     HStack{
                         TextField("Say something...", text: $turyInput)
@@ -276,60 +290,105 @@ struct TuyancWyvzChatRoom: View {
 }
 
 struct WIalnMiczc: View {
+    let wialnRoomId: Int
     @Binding var wialmxIsShowMic: Bool
+    @StateObject private var recorder = WialnAudioRecorder()
+    @State private var isRecording = false
+    
+    @EnvironmentObject var tuyancWyvzChatVM: KsajwufslChatViewModel
+    @EnvironmentObject var tuyancUserVM: LwianzBAwaUserViewModel
+    
     var body: some View {
-        ZStack{
-            VStack(spacing: 12){
-                Text("Talking")
+        ZStack(alignment: .topLeading) {
+
+            VStack(spacing: 14) {
+                Text(isRecording ? "Talking" : "Long press the button below")
                     .font(LerWifaTheme.LerotFont.baigo(14))
                     .foregroundColor(.black)
-                    .frame(width: 221, height: 41)
+                    .frame(width: 240, height: 41)
                     .background(
                         RoundedRectangle(cornerRadius: 29)
                             .fill(.white)
-                            .overlay{
+                            .overlay {
                                 RoundedRectangle(cornerRadius: 29)
                                     .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 1)
-                            }// ⬆️ 上内阴影
+                            }
                             .overlay(
                                 RoundedRectangle(cornerRadius: 29)
                                     .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
                                     .blur(radius: 4)
                                     .offset(y: 2)
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 29)
-                                    )
+                                    .mask(RoundedRectangle(cornerRadius: 29))
                             )
-                            // ⬇️ 下内阴影
                             .overlay(
                                 RoundedRectangle(cornerRadius: 29)
                                     .stroke(LerWifaTheme.Color.mainPurple, lineWidth: 2)
                                     .blur(radius: 4)
                                     .offset(y: -2)
-                                    .mask(
-                                        RoundedRectangle(cornerRadius: 29)
-                                    )
+                                    .mask(RoundedRectangle(cornerRadius: 29))
                             )
                     )
+
                 Image("cponlzna_micphone")
                     .resizable()
                     .frame(width: 27.29, height: 27.29)
                     .background(
-                        Circle().fill(LerWifaTheme.Color.mainYellow)
+                        Circle()
+                            .fill(isRecording
+                                  ? LerWifaTheme.Color.mainPurple
+                                  : LerWifaTheme.Color.mainYellow)
                             .frame(width: 58, height: 58)
-                    ).frame(width: 58, height: 58)
-            }.frame(maxWidth: .infinity)
+                    )
+                    .frame(width: 58, height: 58)
+                    .simultaneousGesture(
+                        LongPressGesture(minimumDuration: 0.3)
+                            .onEnded { _ in
+                                // ✅ 只负责开始
+                                isRecording = true
+                                recorder.startRecord()
+                            }
+                    )
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 0)
+                            .onEnded { _ in
+                                // ✅ 松手才结束
+                                guard isRecording else { return }
+
+                                isRecording = false
+                                recorder.stopRecord()
+
+                                if let url = recorder.recordURL {
+                                    print("🎙️ 录音完成：\(url.path)")
+                                    guard let myInfo = tuyancUserVM.currentUser else { return }
+
+                                    tuyancWyvzChatVM.addMessage(
+                                        sendMsg: KsajwufslMessage(
+                                            nuwzawiGhrdcjsRoomId: wialnRoomId,
+                                            ksajwufslSendUserId: myInfo.lwianzBAwaUserId,
+                                            ksajwufslTextMsg: "",
+                                            ksajwufslImageMsg: "",
+                                            ksajwufslAudioMsg: url.path,
+                                            ksajwufslAudioTime: "",
+                                            ksajwufslDate: Date()
+                                        )
+                                    )
+                                }
+                            }
+                    )
+            }
+            .frame(maxWidth: .infinity)
+
+            // 👇 左上角 keyboard
             Image("cponlzna_keyboard")
                 .resizable()
                 .frame(width: 23, height: 23)
+                .padding(.top, 9)
                 .onTapGesture {
                     wialmxIsShowMic = false
-                }.padding(.top, 9)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
         }
         .frame(height: 111)
         .padding(.bottom, 24)
-        .frame(maxWidth: .infinity, alignment: .topLeading)
-            .padding(.horizontal, 20)
+        .padding(.horizontal, 20)
     }
 }

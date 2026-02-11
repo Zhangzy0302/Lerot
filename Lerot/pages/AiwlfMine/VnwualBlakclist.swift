@@ -34,7 +34,9 @@ struct VnwualBlakclist: View {
                                                 .font(LerWifaTheme.LerotFont.baigo(16))
                                                 .foregroundColor(LerWifaTheme.Color.mainPurple)
                                             Spacer()
-                                            Button(action: {}){
+                                            Button(action: {
+                                                vnwauUserVM.toggleUserIsBlocked(blockUserId: blockUserId)
+                                            }){
                                                 RoundedRectangle(cornerRadius: 77)
                                                     .fill(LerWifaTheme.Color.mainPurple)
                                                     .frame(width: 59, height: 27)

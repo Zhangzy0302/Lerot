@@ -3,6 +3,7 @@ import SwiftUI
 struct CbuaoiAwhgmGuidePage: View {
   @AppStorage("ucwiaxIsAgree") var ucwiaxIsAgree: Bool = false
     @EnvironmentObject private var cbuaoNavi: NavigationManager
+    @EnvironmentObject var cbuaoUSerVM: LwianzBAwaUserViewModel
 
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -62,7 +63,13 @@ struct CbuaoiAwhgmGuidePage: View {
                   LealoeoHUD.toast("Please read and agree to the agreement first")
                   return
               }
-              
+              Task{
+                  LealoeoHUD.showLoading()
+                  await delay(0.6)
+                  LealoeoHUD.hideLoading()
+                  cbuaoUSerVM.visitorLogin()
+                  cbuaoNavi.popToRoot()
+              }
           }) {
             HStack(spacing: 46) {
               Image("cponlzna_user")

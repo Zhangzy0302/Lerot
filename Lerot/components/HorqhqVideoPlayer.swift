@@ -3,99 +3,86 @@ import AVFoundation
 
 struct HorqhqVideoPlayer: View {
 
+    let player: AVPlayer
     let videoPath: String
     let autoPlay: Bool
 
-    @State private var player: AVPlayer?
     @State private var isPlaying = false
     @State private var aspectRatio: CGFloat = 16 / 9
     @State private var endObserver: NSObjectProtocol?
-    
 
     var body: some View {
         ZStack {
-            if let player {
-                LerotPlayerLayerView(player: player)
-                    .frame(maxWidth: .infinity)
-                    .aspectRatio(aspectRatio, contentMode: .fit)
-            } else {
-                Color.black
-                    .aspectRatio(16 / 9, contentMode: .fit)
-            }
+            LerotPlayerLayerView(player: player)
+                .frame(maxWidth: .infinity)
+                .aspectRatio(aspectRatio, contentMode: .fit)
 
-            // ▶️ / ⏸ 按钮
-            if(!isPlaying){
+            if !isPlaying {
                 Image(systemName: "play.fill")
-                        .font(.system(size: 36, weight: .bold))
-                        .foregroundColor(.white)
-                        .padding(20)
-                        .background(Color.black.opacity(0.4))
-                        .clipShape(Circle())
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(20)
+                    .background(Color.black.opacity(0.4))
+                    .clipShape(Circle())
             }
-            
-        }.onTapGesture {
+        }
+        .onTapGesture {
             togglePlay()
         }
         .task(id: videoPath) {
             replaceVideo(with: videoPath)
         }
         .onDisappear {
-            player?.pause()
-            if let endObserver {
-                NotificationCenter.default.removeObserver(endObserver)
-            }
+            pause()
+            removeEndObserver()
         }
     }
 }
 
 private extension HorqhqVideoPlayer {
 
-    func setup(with path: String) {
-            replaceVideo(with: path)
-        }
-
     func replaceVideo(with path: String) {
-        guard let url = makeURL(from: path) else {
-            print("❌ Invalid video path:", path)
-            return
+            guard let url = makeURL(from: path) else {
+                print("❌ Invalid video path:", path)
+                return
+            }
+
+            // 1️⃣ 停止 & 重置
+            pause()
+            removeEndObserver()
+
+            // 2️⃣ 替换 item（关键）
+            let item = AVPlayerItem(url: url)
+            player.replaceCurrentItem(with: item)
+
+            // 3️⃣ 播放结束监听
+            endObserver = NotificationCenter.default.addObserver(
+                forName: .AVPlayerItemDidPlayToEndTime,
+                object: item,
+                queue: .main
+            ) { _ in
+                player.seek(to: .zero)
+                player.play()
+                isPlaying = true
+            }
+
+            // 4️⃣ 更新比例
+            Task {
+                await loadAspectRatio(from: item)
+            }
+
+            // 5️⃣ 自动播放
+            if autoPlay {
+                play()
+            }
         }
 
-        // 1️⃣ 停旧的
-        player?.pause()
-        isPlaying = false
-
-        // 2️⃣ 移除旧监听（非常关键）
-        if let endObserver {
-            NotificationCenter.default.removeObserver(endObserver)
-            self.endObserver = nil
+        func removeEndObserver() {
+            if let endObserver {
+                NotificationCenter.default.removeObserver(endObserver)
+                self.endObserver = nil
+            }
         }
-
-        // 3️⃣ 创建新 item / player
-        let item = AVPlayerItem(url: url)
-        let newPlayer = AVPlayer(playerItem: item)
-        player = newPlayer
-
-        // 4️⃣ 注册播放结束监听
-        endObserver = NotificationCenter.default.addObserver(
-            forName: .AVPlayerItemDidPlayToEndTime,
-            object: item,
-            queue: .main
-        ) { _ in
-            newPlayer.seek(to: .zero)
-            newPlayer.play()
-            isPlaying = true
-        }
-
-        // 5️⃣ 重新算比例
-        Task {
-            await loadAspectRatio(from: item)
-        }
-
-        // 6️⃣ 自动播放
-        if autoPlay {
-            play()
-        }
-    }
 
     func makeURL(from path: String) -> URL? {
         if path.hasPrefix("http://") || path.hasPrefix("https://") {
@@ -136,12 +123,12 @@ private extension HorqhqVideoPlayer {
     }
 
     func play() {
-        player?.play()
+        player.play()
         isPlaying = true
     }
 
     func pause() {
-        player?.pause()
+        player.pause()
         isPlaying = false
     }
 }

@@ -16,7 +16,7 @@ struct ProeuzPayment: View {
                    }
                 }
             ZStack(alignment: .topLeading){
-                Image(prooeauzIsNoMoney ? "cponlzna_dialog_yellow" : "cponlzna_dialog_yellow")
+                Image(prooeauzIsNoMoney ? "cponlzna_dialog_purple" : "cponlzna_dialog_yellow")
                     .resizable()
                     .frame(width: 311, height: 290)
                     .overlay{
@@ -48,6 +48,7 @@ struct ProeuzPayment: View {
                                         proeuzIsShowPayment = false
                                         proeuzNavi.push(VeulaNwiAppRoute.myWallet)
                                     }else{
+                                        proeuzIsShowPayment = false
                                         proazUserVM.increaseUserDiamond(diamond: -300)
                                         proeuzNavi.push(VeulaNwiAppRoute.eyrskAiChat)
                                     }
@@ -69,7 +70,7 @@ struct ProeuzPayment: View {
                 Image(prooeauzIsNoMoney ? "cponlzna_payment_no_money" : "cponlzna_payment")
                     .resizable()
                     .frame(width: 134, height: 134)
-                    .offset(x: 0, y: -110)
+                    .offset(x: 0, y: -80)
             }
         }
     }

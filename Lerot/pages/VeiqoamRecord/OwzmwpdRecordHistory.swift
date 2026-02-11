@@ -78,8 +78,8 @@ struct OwzmwpdRecordHistory: View {
                                     .fill(.white)
                                 )
                             Spacer()
-                        }
-                    }.frame(maxWidth: .infinity, maxHeight: 273, alignment: .top)
+                        }.padding(16)
+                    }.frame(maxWidth: .infinity, alignment: .top)
                     Text(owqaRecordDetail.jflawhPracRecordText)
                         .font(LerWifaTheme.LerotFont.miSans(12))
                         .foregroundColor(.white.opacity(0.9))
@@ -94,8 +94,4 @@ struct OwzmwpdRecordHistory: View {
             }.padding(.horizontal, 20)
         }
     }
-}
-
-#Preview {
-    OwzmwpdRecordHistory()
 }

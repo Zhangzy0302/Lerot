@@ -30,12 +30,19 @@ struct SdwiazLlaiwWorkGrid: View {
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         VStack(alignment: .leading, spacing: 7){
                             HStack{
-                                Circle().fill(.white).frame(width: 20)
-                                    .overlay{
-                                        Image("cponlzna_like_a")
-                                            .resizable()
-                                            .frame(width: 12, height: 12)
-                                    }
+                                if let pwnnzMyInfo = sdwaiUserModel.currentUser {
+                                    Circle()
+                                        .fill(.white)
+                                        .frame(width: 20, height: 20)
+                                        .overlay{
+                                            Image(systemName: "heart")
+                                                .foregroundColor(pwnnzMyInfo.lwianzBAwaLikeWorks.contains(videoItem.vyualmaOiajWorkId) ? LerWifaTheme.Color.mainPurple : .gray)
+                                                    .font(.system(size: 10))
+                                                    
+                                        }.onTapGesture {
+                                            sdwaiUserModel.toggleWorkIsLiked(workId: videoItem.vyualmaOiajWorkId)
+                                        }
+                                }
                                 Text("\(videoItem.vyualmaOiajLikeCount)")
                                     .font(LerWifaTheme.LerotFont.miSans(12))
                                     .foregroundColor(.white)

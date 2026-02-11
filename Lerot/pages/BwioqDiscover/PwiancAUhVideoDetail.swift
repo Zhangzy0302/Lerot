@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct PwiancAUhVideoDetail: View {
     let pwiancAhuVideoId: Int
@@ -10,12 +11,14 @@ struct PwiancAUhVideoDetail: View {
     @State private var pwianIsPalying: Bool = false
     @State private var isShowComment: Bool = false
     
+    @State private var player = AVPlayer()
+    
     var body: some View {
         GeometryReader{geo in
             if let pwiancVideoInfo = pwiancAUhVideoModel.workDetail {
                 ZStack(alignment: .top){
                     Color.black.ignoresSafeArea()
-                    HorqhqVideoPlayer(videoPath: pwiancVideoInfo.vyualmaOiajVideoUrl, autoPlay: true).ignoresSafeArea()
+                    HorqhqVideoPlayer(player: player, videoPath: pwiancVideoInfo.vyualmaOiajVideoUrl, autoPlay: true).ignoresSafeArea()
                         .clipped()
                     VStack {
                         Spacer()
@@ -28,14 +31,20 @@ struct PwiancAUhVideoDetail: View {
                                             pwianNavi.push(VeulaNwiAppRoute.bejadlUserPage(userId: pwiancVideoInfo.vyualmaOiajCreatorId, isMine: false))
                                         }
                                     VStack(spacing: 10){
-                                        Circle()
-                                            .fill(.black.opacity(0.2))
-                                            .frame(width: 48, height: 48)
-                                            .overlay{
-                                                Image("cponlzna_like_fill")
-                                                    .resizable()
-                                                    .frame(width: 22, height: 22)
-                                            }
+                                        if let pwnnzMyInfo = pwianUserVM.currentUser {
+                                            Circle()
+                                                .fill(.black.opacity(0.2))
+                                                .frame(width: 48, height: 48)
+                                                .overlay{
+                                                    Image(systemName: pwnnzMyInfo.lwianzBAwaLikeWorks.contains(pwiancAhuVideoId) ? "heart.fill" : "heart")
+                                                        .foregroundColor(pwnnzMyInfo.lwianzBAwaLikeWorks.contains(pwiancAhuVideoId) ? LerWifaTheme.Color.mainPurple : .white)
+                                                            .font(.system(size: 24))
+                                                            
+                                                }.onTapGesture {
+                                                    pwianUserVM.toggleWorkIsLiked(workId: pwiancAhuVideoId)
+                                                }
+                                        }
+                                        
                                         Text("\(pwiancVideoInfo.vyualmaOiajLikeCount)")
                                             .font(LerWifaTheme.LerotFont.baigo(16))
                                             .foregroundColor(.white)
@@ -99,6 +108,17 @@ struct PwiancAUhVideoDetail: View {
             .onAppear{
                 pwiancAUhVideoModel.getWorkDetailByWorkId(workId: pwiancAhuVideoId)
                 pwainCommentVM.getCommentsNotBlockByWorkId(workId: pwiancAhuVideoId)
+            }.onChange(of: pwianNavi.isShowBlock) { show in
+                guard show == false else { return }
+                guard let pwainMyInfo = pwianUserVM.currentUser else { return }
+                guard let videoDetail = pwiancAUhVideoModel.workDetail else { return }
+                if(pwainMyInfo.lwianzBAwaBlacklist.contains(videoDetail.vyualmaOiajCreatorId)) {
+                    print("pop")
+                    
+                    DispatchQueue.main.async {
+                        pwianNavi.popToRoot()
+                        }
+                }
             }
     }
 }

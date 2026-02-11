@@ -41,7 +41,7 @@ struct CwiHAkmeajHomePage: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.top, 15)
               CwiaAkweRecordCard()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
                 .padding(.top, 6)
@@ -83,35 +83,35 @@ struct CwiHAkmeajHomePage: View {
       VStack(spacing: 0) {
           LeraoTopDate(cwqoiaDateList: $cwqoiaDateList, cwiahCurrentDay: $cwiahCurrentDay)
           if(!cwqoHaskTodayRecord.isEmpty){
-              VStack(alignment: .leading, spacing: 0) {
-                  ZStack {
-                      GeometryReader {geo in
-                          KalfwalxImage(KalfwalxImageUrl: cwqoHaskTodayRecord[0].jflawhPracRecordImage, KalfwalxWidth: geo.size.width, KalfwalxHeight: .infinity)
+              VStack(alignment: .leading, spacing: 12) {
+                  GeometryReader { geo in
+                      ZStack {
+                          KalfwalxImage(KalfwalxImageUrl: cwqoHaskTodayRecord[0].jflawhPracRecordImage, KalfwalxWidth: .infinity, KalfwalxHeight: geo.size.height)
                               .cornerRadius(30)
-                      }
-                      VStack{
-                          Spacer()
-                          HStack(spacing: 10) {
-                              Text(cwqoHaskTodayRecord[0].jflawhPracRecordPracticeDuration)
-                              .font(LerWifaTheme.LerotFont.baigo(12))
-                              .foregroundColor(LerWifaTheme.Color.mainPurple)
-                              .padding(10)
-                              .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                  .fill(.white)
-                              )
-                              Text("Status: \(cwqoHaskTodayRecord[0].jflawhPracRecordStatus + 1) points")
-                              .font(LerWifaTheme.LerotFont.baigo(12))
-                              .foregroundColor(LerWifaTheme.Color.mainYellow)
-                              .padding(10)
-                              .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                  .fill(.white)
-                              )
+                          VStack{
                               Spacer()
+                              HStack(spacing: 10) {
+                                  Text(cwqoHaskTodayRecord[0].jflawhPracRecordPracticeDuration)
+                                  .font(LerWifaTheme.LerotFont.baigo(12))
+                                  .foregroundColor(LerWifaTheme.Color.mainPurple)
+                                  .padding(10)
+                                  .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                      .fill(.white)
+                                  )
+                                  Text("Status: \(cwqoHaskTodayRecord[0].jflawhPracRecordStatus + 1) points")
+                                  .font(LerWifaTheme.LerotFont.baigo(12))
+                                  .foregroundColor(LerWifaTheme.Color.mainYellow)
+                                  .padding(10)
+                                  .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                      .fill(.white)
+                                  )
+                                  Spacer()
+                              }.padding(10)
                           }
                       }
-                  }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                  }
                 Text(
                     cwqoHaskTodayRecord[0].jflawhPracRecordText
                 )

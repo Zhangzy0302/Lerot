@@ -10,25 +10,25 @@ struct LakcqlkProduct {
 
 let ghuencziwProducts: [LakcqlkProduct] = [
   LakcqlkProduct(
-    lakcqlkKeyId: "lvbsvhxcgcrvesor", lakcqlkGetDiamond: 400, lakcqlkPrice: 0.99),
+    lakcqlkKeyId: "uuawqenxoegktdwt", lakcqlkGetDiamond: 400, lakcqlkPrice: 0.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "dxismgcwewhrtezo", lakcqlkGetDiamond: 800, lakcqlkPrice: 1.99),
+    lakcqlkKeyId: "nyembqgosvgtozwi", lakcqlkGetDiamond: 800, lakcqlkPrice: 1.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "khtxlcejaxmqcsra", lakcqlkGetDiamond: 2450, lakcqlkPrice: 4.99),
+    lakcqlkKeyId: "zwxcpceamjhsipot", lakcqlkGetDiamond: 2450, lakcqlkPrice: 4.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "yadwwvxspgxwlndb", lakcqlkGetDiamond: 5150, lakcqlkPrice: 9.99),
+    lakcqlkKeyId: "rtykqvbnzplmdxua", lakcqlkGetDiamond: 3950, lakcqlkPrice: 7.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "qnrcuelbtiuflyky", lakcqlkGetDiamond: 6400, lakcqlkPrice: 12.99),
+    lakcqlkKeyId: "viqolchsyyjuqdjy", lakcqlkGetDiamond: 5150, lakcqlkPrice: 9.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "ymohxnvpkqxutvab", lakcqlkGetDiamond: 10800, lakcqlkPrice: 19.99),
+    lakcqlkKeyId: "hzmqplrtsvknadwx", lakcqlkGetDiamond: 8900, lakcqlkPrice: 17.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "bczufnoykqjewrsa", lakcqlkGetDiamond: 11200, lakcqlkPrice: 20.99),
+    lakcqlkKeyId: "kgcnuowkmlnwgphn", lakcqlkGetDiamond: 10800, lakcqlkPrice: 19.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "xwbzewwucitehljp", lakcqlkGetDiamond: 29400, lakcqlkPrice: 49.99),
+    lakcqlkKeyId: "lxqvmpztnkrsadhw", lakcqlkGetDiamond: 14900, lakcqlkPrice: 29.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "mptxkvdnshfcaeor", lakcqlkGetDiamond: 39500, lakcqlkPrice: 79.99),
+    lakcqlkKeyId: "qemafkhibigxyipb", lakcqlkGetDiamond: 29400, lakcqlkPrice: 49.99),
   LakcqlkProduct(
-    lakcqlkKeyId: "wkxvtywoyadaqvue", lakcqlkGetDiamond: 63700, lakcqlkPrice: 99.99),
+    lakcqlkKeyId: "cvmelsnxidysnzfl", lakcqlkGetDiamond: 63700, lakcqlkPrice: 99.99)
 ]
 
 enum LakcqlkPurchaseResult {

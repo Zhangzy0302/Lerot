@@ -22,7 +22,7 @@ final class PwqomaACowCommentsViewModel: ObservableObject {
 
   @Published var workCommentsNotBlock: [PwqomaACowComment] = []
 
-    private let storage = LerotStorageManager.shared
+  private let storage = LerotStorageManager.shared
 
   func getCommentsNotBlockByWorkId(workId: Int) {
     let allComments: [PwqomaACowComment] = storage.getComments(for: workId)
@@ -31,16 +31,27 @@ final class PwqomaACowCommentsViewModel: ObservableObject {
       return
     }
     workCommentsNotBlock = allComments.filter {
-        !loginUserInfo.lwianzBAwaBlacklist.contains($0.pwqomaACowCommentUserId)
+      !loginUserInfo.lwianzBAwaBlacklist.contains($0.pwqomaACowCommentUserId)
     }
   }
 
-    func getCommetUserInfo(userId: Int) -> LwianzBAwaUser? {
+  func getCommetUserInfo(userId: Int) -> LwianzBAwaUser? {
     return storage.getUserById(userId: userId)
   }
 
   func addCommentItem(commentItem: PwqomaACowComment) {
     storage.addComment(commentItem)
 
+  }
+
+  // 删除我的所有评论
+  func deleteCommentItem() {
+    let currentUserId = storage.getCurrentUserId()
+    let allComments = storage.getAllComments()
+    for comment in allComments {
+      if comment.pwqomaACowCommentUserId == currentUserId {
+        storage.deleteComment(comment)
+      }
+    }
   }
 }

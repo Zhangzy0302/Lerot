@@ -64,6 +64,19 @@ struct HGwgakhGHaDiscoverPage: View {
                                         }.frame(width: 178)
                                         Spacer()
                                     }.padding(.horizontal, 18)
+                                        .onTapGesture {
+                                            if let qohmjfa = hgaiUserVM.currentUser {
+                                                
+                                                if(qohmjfa.lwianzBAwaWalletBalance >= 300){
+                                                    ghajIsNoMoney = false
+                                                }else{
+                                                    ghajIsNoMoney = true
+                                                }
+                                                withAnimation(.easeOut) {
+                                                    hgawagIsShowPayment = true
+                                                }
+                                            }
+                                        }
                                     HStack{
                                         Spacer()
                                         Image("cponlzna_ai_character")
@@ -74,19 +87,7 @@ struct HGwgakhGHaDiscoverPage: View {
                                 }
                             
                         }.frame(height: 197).padding(.horizontal, 20)
-                            .onTapGesture {
-                                if let qohmjfa = hgaiUserVM.currentUser {
-                                    
-                                    if(qohmjfa.lwianzBAwaWalletBalance >= 300){
-                                        ghajIsNoMoney = false
-                                    }else{
-                                        ghajIsNoMoney = true
-                                    }
-                                    withAnimation(.easeOut) {
-                                        hgawagIsShowPayment = true
-                                    }
-                                }
-                            }
+                            
                         HguanzaRecommendVideosGrid()
                     }
                 }

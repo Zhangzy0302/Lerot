@@ -24,6 +24,7 @@ struct NbykzwTextFiled: View {
             .focused($nbykzIsFocus)
             .padding(20)
             .tint(.black)
+            .textInputAutocapitalization(.never)
             .font(LerWifaTheme.LerotFont.miSans(14))
             .foregroundColor(.black)
             .frame(height: nbykzHeight, alignment: .top)

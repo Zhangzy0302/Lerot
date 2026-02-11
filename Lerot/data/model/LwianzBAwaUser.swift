@@ -61,14 +61,14 @@ final class LwianzBAwaUserViewModel: ObservableObject {
 
   // 游客登录
   func visitorLogin() {
-    storage.setCurrentUserId(5)
+    storage.setCurrentUserId(6)
     loadLoginUser()
   }
 
   // 删除账号
   func deleteAccount() {
-    if storage.getCurrentUserId() == 5 {
-      storage.updateUser(uid: 5) { user in
+    if storage.getCurrentUserId() == 6 {
+      storage.updateUser(uid: 6) { user in
         var newUser: LwianzBAwaUser = user
         newUser.lwianzBAwaUserName = "Visitor_00" + "\(Int.random(in: 20...100))"
         newUser.lwianzBAwaAvatar = "cponlzna_default_avatar"

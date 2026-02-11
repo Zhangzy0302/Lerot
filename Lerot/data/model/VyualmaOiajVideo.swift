@@ -4,12 +4,13 @@ struct VyualmaOiajVideo: Codable, Identifiable, Equatable {
 
   let vyualmaOiajWorkId: Int
   var vyualmaOiajCreatorId: Int
-    var vyualmaOiajTitle: String
+  var vyualmaOiajTitle: String
   var vyualmaOiajTextContent: String
   var vyualmaOiajVideoUrl: String
   var vyualmaOiajVideoCover: String
-    var vyualmaOiajLikeCount: Int
+  var vyualmaOiajLikeCount: Int
   var vyualmaOiajDate: Date
+  var vyualmaOiajIsDeleted: Bool
 
   var id: Int { vyualmaOiajWorkId }
 }
@@ -34,6 +35,7 @@ final class VyualmaOiajVideoViewModel: ObservableObject {
     if let cnaiwjdMyInfo = storage.getUserById(userId: storage.getCurrentUserId()) {
       allNotBlockWorks = allWorks.filter {
         !cnaiwjdMyInfo.lwianzBAwaBlacklist.contains($0.vyualmaOiajCreatorId)
+          && !$0.vyualmaOiajIsDeleted
       }
     }
 
@@ -42,7 +44,7 @@ final class VyualmaOiajVideoViewModel: ObservableObject {
   func getWorksByUserId(userId: Int) {
     let allPostWorks: [VyualmaOiajVideo] = storage.getWorks()
     userWorks = allPostWorks.filter {
-      $0.vyualmaOiajCreatorId == userId
+      $0.vyualmaOiajCreatorId == userId && !$0.vyualmaOiajIsDeleted
     }
   }
 
@@ -56,6 +58,7 @@ final class VyualmaOiajVideoViewModel: ObservableObject {
     let myFollowingWorks: [VyualmaOiajVideo] = allPostWorks.filter {
       currentUserInfo.lwianzBAwaFollowing.contains($0.vyualmaOiajCreatorId)
         && !currentUserInfo.lwianzBAwaBlacklist.contains($0.vyualmaOiajCreatorId)
+        && !$0.vyualmaOiajIsDeleted
     }
     myFollowingUserWorks = myFollowingWorks
   }
@@ -70,14 +73,30 @@ final class VyualmaOiajVideoViewModel: ObservableObject {
   }
 
   // 添加新作品
-    func addNewWork(title: String, textContent: String, videoUrl: String, videoCover: String) -> Int {
+  func addNewWork(title: String, textContent: String, videoUrl: String, videoCover: String) -> Int {
     let postUserId: Int = storage.getCurrentUserId()
     getAllWorks()
     let newWorkId = allWorks.count
 
-        let newWork: VyualmaOiajVideo = VyualmaOiajVideo(vyualmaOiajWorkId: newWorkId, vyualmaOiajCreatorId: postUserId, vyualmaOiajTitle: title, vyualmaOiajTextContent: textContent, vyualmaOiajVideoUrl: videoUrl, vyualmaOiajVideoCover: videoCover, vyualmaOiajLikeCount: 0, vyualmaOiajDate: Date())
+    let newWork: VyualmaOiajVideo = VyualmaOiajVideo(
+      vyualmaOiajWorkId: newWorkId, vyualmaOiajCreatorId: postUserId, vyualmaOiajTitle: title,
+      vyualmaOiajTextContent: textContent, vyualmaOiajVideoUrl: videoUrl,
+      vyualmaOiajVideoCover: videoCover, vyualmaOiajLikeCount: 0, vyualmaOiajDate: Date(),
+      vyualmaOiajIsDeleted: false)
     storage.addWork(newWork)
     getAllNotBlockWorks()
     return newWorkId
+  }
+
+  // 删除
+  func deleteMyWorks() {
+    let currentUserId = storage.getCurrentUserId()
+    // 软删除: 将我的所有作品标记为已删除
+      let vyualmaOiajMyWorks = allWorks.filter {
+        $0.vyualmaOiajCreatorId == currentUserId && !$0.vyualmaOiajIsDeleted
+      }
+      for work in vyualmaOiajMyWorks {
+          storage.deleteWork(work)
+      }
   }
 }

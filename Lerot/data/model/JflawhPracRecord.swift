@@ -43,8 +43,10 @@ final class JflawhPracRecordViewModel: ObservableObject {
     }
   }
 
-  func deleteMyRecord(workId: UUID) {
-    storage.deleteViolinRecord(workId)
+  func deleteMyRecord() {
+      for record in myRecord {
+          storage.deleteViolinRecord(record.id)
+      }
     getMyRecord()
   }
 

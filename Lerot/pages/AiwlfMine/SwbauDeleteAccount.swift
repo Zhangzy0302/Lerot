@@ -2,6 +2,12 @@ import SwiftUI
 
 struct SwbauDeleteAccount: View {
     @Binding var swbauIsShow: Bool
+    @EnvironmentObject var swbauUserVM: LwianzBAwaUserViewModel
+    @EnvironmentObject var sauanVideoVM: VyualmaOiajVideoViewModel
+    @EnvironmentObject var savaCommentVM: PwqomaACowCommentsViewModel
+    @EnvironmentObject var suwanRecordVM: JflawhPracRecordViewModel
+    
+    @EnvironmentObject var wianNamvi: NavigationManager
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -38,7 +44,16 @@ struct SwbauDeleteAccount: View {
                                         )
                                 }
                                 Button(action: {
-                                    
+                                    Task {
+                                        LealoeoHUD.showLoading()
+                                        await delay(2)
+                                        sauanVideoVM.deleteMyWorks()
+                                        swbauUserVM.deleteAccount()
+                                        savaCommentVM.deleteCommentItem()
+                                        suwanRecordVM.deleteMyRecord()
+                                        LealoeoHUD.hideLoading()
+                                        wianNamvi.popToRoot()
+                                    }
                                 }) {
                                     Text("Sure")
                                         .font(LerWifaTheme.LerotFont.baigo(18))

@@ -201,7 +201,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_0.png",
         vyualmaOiajLikeCount: 397,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600),
+        vyualmaOiajIsDeleted: false),
       VyualmaOiajVideo(
         vyualmaOiajWorkId: 1,
         vyualmaOiajCreatorId: 1,
@@ -213,7 +214,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_1.png",
         vyualmaOiajLikeCount: 727,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_700)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_700),
+        vyualmaOiajIsDeleted: false),
       VyualmaOiajVideo(
         vyualmaOiajWorkId: 2,
         vyualmaOiajCreatorId: 2,
@@ -225,7 +227,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_2.png",
         vyualmaOiajLikeCount: 986,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600),
+        vyualmaOiajIsDeleted: false),
       VyualmaOiajVideo(
         vyualmaOiajWorkId: 3,
         vyualmaOiajCreatorId: 3,
@@ -236,7 +239,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_3.png",
         vyualmaOiajLikeCount: 657,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600),
+        vyualmaOiajIsDeleted: false),
       VyualmaOiajVideo(
         vyualmaOiajWorkId: 4,
         vyualmaOiajCreatorId: 4,
@@ -247,7 +251,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_4.png",
         vyualmaOiajLikeCount: 1397,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600),
+        vyualmaOiajIsDeleted: false),
       VyualmaOiajVideo(
         vyualmaOiajWorkId: 5,
         vyualmaOiajCreatorId: 5,
@@ -258,7 +263,8 @@ extension LerotStorageManager {
         vyualmaOiajVideoCover:
           "http://huanniuchat.oss-accelerate.aliyuncs.com/Lerot2026/wiancz_v_cover_5.png",
         vyualmaOiajLikeCount: 297,
-        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600)),
+        vyualmaOiajDate: Date(timeIntervalSince1970: 1_706_418_600),
+        vyualmaOiajIsDeleted: false),
     ]
     save(vyualmaOiajWorks, forKey: Keys.vyualmaOiajWorks)
   }
@@ -296,6 +302,33 @@ extension LerotStorageManager {
     vyualmaOiajWorks.insert(work, at: 0)
     save(vyualmaOiajWorks, forKey: Keys.vyualmaOiajWorks)
   }
+
+  func updateWork(_ work: VyualmaOiajVideo) {
+    var vyualmaOiajWorks = getWorks()
+    guard
+      let index = vyualmaOiajWorks.firstIndex(where: {
+        $0.vyualmaOiajWorkId == work.vyualmaOiajWorkId
+      })
+    else {
+      return
+    }
+
+    vyualmaOiajWorks[index] = work
+  }
+
+  // 软删除
+  func deleteWork(_ work: VyualmaOiajVideo) {
+    var vyualmaOiajWorks = getWorks()
+    guard
+      let index = vyualmaOiajWorks.firstIndex(where: {
+        $0.vyualmaOiajWorkId == work.vyualmaOiajWorkId
+      })
+    else {
+      return
+    }
+
+    vyualmaOiajWorks[index].vyualmaOiajIsDeleted = true
+  }
 }
 
 //Comment
@@ -311,11 +344,28 @@ extension LerotStorageManager {
       .filter { $0.pwqomaACowCommentWorkId == workId }
   }
 
+  // 获取所有评论
+  func getAllComments() -> [PwqomaACowComment] {
+    load([PwqomaACowComment].self, forKey: Keys.pwqomaACowComments, default: [])
+  }
+
   func addComment(_ comment: PwqomaACowComment) {
     var pwqomaACowComments = load(
       [PwqomaACowComment].self, forKey: Keys.pwqomaACowComments, default: [])
     pwqomaACowComments.append(comment)
     save(pwqomaACowComments, forKey: Keys.pwqomaACowComments)
+  }
+
+  func deleteComment(_ comment: PwqomaACowComment) {
+    var comments = load(
+      [PwqomaACowComment].self,
+      forKey: Keys.pwqomaACowComments,
+      default: []
+    )
+
+    comments.removeAll { $0.id == comment.id }
+
+    save(comments, forKey: Keys.pwqomaACowComments)
   }
 }
 

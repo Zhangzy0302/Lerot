@@ -4,63 +4,70 @@ struct WYofavNaReportBlock: View {
     @EnvironmentObject var wyofajcNavi: NavigationManager
     @EnvironmentObject var wyaofaUserVM: LwianzBAwaUserViewModel
     
+    @State private var wyfacvIsShowBlockDialog: Bool = false
+    
     var body: some View {
-        ZStack{
-            Image("cponlzna_dialog_purple")
-                .resizable()
-                .frame(width: 320, height: 290)
-            HStack(spacing: 30){
-                VStack(spacing: 30){
-                    Image("cponlzna_icon_report")
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .background(
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(.white.opacity(0.1))
-                                .frame(width: 80, height: 79)
-                        ).frame(width: 80, height: 79)
-                    Button(action: {
-                        wyofajcNavi.closeReportBlock()
-                        wyofajcNavi.push(VeulaNwiAppRoute.wanvlzReportPage)
-                    }) {
-                        Text("report")
-                            .font(LerWifaTheme.LerotFont.baigo(20))
-                            .foregroundColor(.black)
-                            .frame(width: 108, height: 50)
+        if(wyfacvIsShowBlockDialog){
+            TeuaynBlock()
+                .transition(.opacity)
+        }else{
+            ZStack{
+                Image("cponlzna_dialog_purple")
+                    .resizable()
+                    .frame(width: 320, height: 290)
+                HStack(spacing: 30){
+                    VStack(spacing: 30){
+                        Image("cponlzna_icon_report")
+                            .resizable()
+                            .frame(width: 32, height: 32)
                             .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(LerWifaTheme.Color.mainYellow)
-                                    
-                            )
-                    }
-                }
-                VStack(spacing: 30){
-                    Image("cponlzna_block_user")
-                        .resizable()
-                        .frame(width: 32, height: 32)
-                        .background(
-                            RoundedRectangle(cornerRadius: 14)
-                                .fill(.white.opacity(0.1))
-                                .frame(width: 80, height: 79)
-                        ).frame(width: 80, height: 79)
-                    Button(action: {
-                        if let almzblockUserId = wyofajcNavi.blockUserID {
-                            wyaofaUserVM.toggleUserIsBlocked(blockUserId: almzblockUserId)
+                                RoundedRectangle(cornerRadius: 14)
+                                    .fill(.white.opacity(0.1))
+                                    .frame(width: 80, height: 79)
+                            ).frame(width: 80, height: 79)
+                        Button(action: {
                             wyofajcNavi.closeReportBlock()
+                            wyofajcNavi.push(VeulaNwiAppRoute.wanvlzReportPage)
+                        }) {
+                            Text("report")
+                                .font(LerWifaTheme.LerotFont.baigo(20))
+                                .foregroundColor(.black)
+                                .frame(width: 108, height: 50)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(LerWifaTheme.Color.mainYellow)
+                                        
+                                )
                         }
-                        
-                    }) {
-                        Text("block")
-                            .font(LerWifaTheme.LerotFont.baigo(20))
-                            .foregroundColor(.white)
-                            .frame(width: 108, height: 50)
+                    }
+                    VStack(spacing: 30){
+                        Image("cponlzna_block_user")
+                            .resizable()
+                            .frame(width: 32, height: 32)
                             .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(LerWifaTheme.Color.mainPurple)
-                            )
+                                RoundedRectangle(cornerRadius: 14)
+                                    .fill(.white.opacity(0.1))
+                                    .frame(width: 80, height: 79)
+                            ).frame(width: 80, height: 79)
+                        Button(action: {
+                            withAnimation {
+                                wyfacvIsShowBlockDialog = true
+                            }
+                            
+                        }) {
+                            Text("block")
+                                .font(LerWifaTheme.LerotFont.baigo(20))
+                                .foregroundColor(.white)
+                                .frame(width: 108, height: 50)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(LerWifaTheme.Color.mainPurple)
+                                )
+                        }
                     }
                 }
             }
         }
+        
     }
 }
