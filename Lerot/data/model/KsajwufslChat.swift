@@ -97,6 +97,17 @@ final class KsajwufslChatViewModel: ObservableObject {
   func addMessage(sendMsg: KsajwufslMessage) {
     storage.addMessage(sendMsg)
     getMessageListByChatId(chatRoomId: sendMsg.nuwzawiGhrdcjsRoomId)
+      storage.updateChatRoom(roomId: sendMsg.nuwzawiGhrdcjsRoomId) { room in
+          var newRoom: KsajwufslChatRoom = room
+          if(!sendMsg.ksajwufslTextMsg.isEmpty){
+              newRoom.ksajwufslLastSendMsg = sendMsg.ksajwufslTextMsg
+          }else if(!sendMsg.ksajwufslAudioMsg.isEmpty){
+              newRoom.ksajwufslLastSendMsg = "[audio]"
+          }
+          newRoom.ksajwufslLastSendTime = Date()
+          return newRoom
+      }
+      getMyChatRoomsNotBlock()
   }
 
   // 查找或创建聊天室
