@@ -77,4 +77,4 @@ workflows:
           filters:
             branches:
               only:
-                - main # 当前打包分支---github对应的分支
+                - pre # 当前打包分支---github对应的分支
