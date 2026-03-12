@@ -140,7 +140,7 @@ platform :ios do
       team_id: "6DUGLVGD5U",
       targets: ["Lerot"],
       code_sign_identity: "Apple Distribution",
-      profile_name: "match AppStore com.leaivnwiuuaocn.Lerot 1773295928",
+      profile_name: "match AppStore com.leaivnwiuuaocn.Lerot 1773300019",
     )
     
 
