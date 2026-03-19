@@ -104,17 +104,9 @@
 			);
 			name = Lerot;
 			packageProductDependencies = (
-				DD96D7052F6B9D3000239D96 /* AdjustGoogleOdm */,
 				DD96D7072F6B9D3000239D96 /* AdjustSdk */,
-				DD96D7092F6B9D3000239D96 /* AdjustUnsigned */,
-				DD96D70B2F6B9D3000239D96 /* AdjustWebBridge */,
-				DDA78AB72F6BC51B0008C4C3 /* AdjustGoogleOdm */,
-				DDA78AB92F6BC51B0008C4C3 /* AdjustSdk */,
-				DDA78ABB2F6BC51B0008C4C3 /* AdjustUnsigned */,
-				DDA78ABD2F6BC51B0008C4C3 /* AdjustWebBridge */,
 				DDB1F9692F6BCDC0005364B7 /* Alamofire */,
 				DDB1F96C2F6BCDDD005364B7 /* ScreenShield */,
-				DDF84D602F6BE45C00C3ADF6 /* AdjustSdk */,
 				DDC6B7272F6BE5490094EAC3 /* FacebookAEM */,
 				DDC6B7292F6BE5490094EAC3 /* FacebookBasics */,
 				DDC6B72B2F6BE5490094EAC3 /* FacebookCore */,
@@ -441,38 +433,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DD96D7052F6B9D3000239D96 /* AdjustGoogleOdm */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustGoogleOdm;
-		};
-		DD96D7072F6B9D3000239D96 /* AdjustSdk */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustSdk;
-		};
-		DD96D7092F6B9D3000239D96 /* AdjustUnsigned */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustUnsigned;
-		};
-		DD96D70B2F6B9D3000239D96 /* AdjustWebBridge */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustWebBridge;
-		};
-		DDA78AB72F6BC51B0008C4C3 /* AdjustGoogleOdm */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustGoogleOdm;
-		};
-		DDA78AB92F6BC51B0008C4C3 /* AdjustSdk */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustSdk;
-		};
-		DDA78ABB2F6BC51B0008C4C3 /* AdjustUnsigned */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustUnsigned;
-		};
-		DDA78ABD2F6BC51B0008C4C3 /* AdjustWebBridge */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdjustWebBridge;
-		};
 		DDB1F9692F6BCDC0005364B7 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DDB1F9682F6BCDC0005364B7 /* XCRemoteSwiftPackageReference "Alamofire" */;

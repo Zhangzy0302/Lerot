@@ -1,5 +1,5 @@
 {
-  "originHash" : "65aab48f5014ce1959a73bcdceb805cfebbef7f0623f5a9c851829618c541399",
+  "originHash" : "126420864b7ad0f0718d44eb1a328966d8b7e09f88209f5def997f24fdcecc78",
   "pins" : [
     {
       "identity" : "adjust_signature_sdk",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "3f99050e75bbc6fe71fc323adabb039756680016",
-        "version" : "5.11.1"
+        "revision" : "3dc6a42c7727c49bf26508e29b0a0b35f9c7e1ad",
+        "version" : "5.8.1"
       }
     },
     {
