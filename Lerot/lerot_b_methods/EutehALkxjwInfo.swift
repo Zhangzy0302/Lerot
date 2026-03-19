@@ -10,7 +10,7 @@ import Security
 
 // MARK: - Key 定义
 enum SecureKey {
-    case ruwhxnAKjldkDevid, token, password
+    case ruwhxnAKjldkDevid, password
 
     var key: String {
         switch self {
