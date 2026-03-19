@@ -18,6 +18,7 @@ enum VeulaNwiAppRoute: Hashable {
     
     // chat
     case viqoanChatRoom(roomId: Int)
+    case piwnxAcCallVideo(chatUserInfo: Int)
     
     // video
     case woinbiVideoDetail(videoId: Int)
@@ -77,6 +78,8 @@ struct VeualjNwajRoute: View {
                     // chat
                 case .viqoanChatRoom(let roomId):
                     TuyancWyvzChatRoom(tuyancWyvzRoomId: roomId)
+                case .piwnxAcCallVideo(let chatUserID):
+                    PiwnxAcaCallVideo(piwnaxCallUserId: chatUserID)
                     
                 // video
                 case .woinbiVideoDetail(let videoId):

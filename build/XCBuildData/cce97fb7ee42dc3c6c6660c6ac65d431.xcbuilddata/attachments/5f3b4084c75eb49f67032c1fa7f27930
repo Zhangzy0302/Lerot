@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary.swiftconstvalues",
+    "dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary.d",
+    "diagnostics" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary.dia",
+    "emit-module-dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary-emit-module.dia",
+    "pch" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield-primary.swiftdeps"
+  },
+  "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/Source/ScreenShield.swift" : {
+    "index-unit-output-path" : "/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield.o",
+    "llvm-bc" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield.bc",
+    "object" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ScreenShield/build/ScreenShield.build/Release-iphoneos/ScreenShield.build/Objects-normal/arm64/ScreenShield.o"
+  }
+}

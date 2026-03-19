@@ -212,13 +212,14 @@ struct TuyancWyvzChatRoom: View {
         
         @EnvironmentObject var trnzuiChatVM: KsajwufslChatViewModel
         @EnvironmentObject var tuanUserVM: LwianzBAwaUserViewModel
+        @EnvironmentObject var tuaeaunNavi: NavigationManager
         
         var body: some View {
             if(turyaIsShowMic){
                 WIalnMiczc(wialnRoomId: raioRoomId, wialmxIsShowMic: $turyaIsShowMic)
             }else{
                 VStack(alignment: .leading, spacing: 20){
-                    HStack{
+                    HStack(spacing: 10){
                         Circle().frame(width: 34)
                             .overlay{
                                 Image("cponlzna_micphone")
@@ -227,7 +228,15 @@ struct TuyancWyvzChatRoom: View {
                             }.onTapGesture {
                                 turyaIsShowMic = true
                             }
-                        
+                        Image("xkjaliAliwa")
+                            .resizable()
+                            .frame(width: 34, height: 34)
+                            .onTapGesture {
+                                if let chatuserIdawa = trnzuiChatVM.getChatUserId(chatRoomId: raioRoomId) {
+                                    tuaeaunNavi.push(.piwnxAcCallVideo(chatUserInfo: chatuserIdawa))
+                                }
+                                
+                            }
                     }
                     HStack{
                         TextField("Say something...", text: $turyInput)

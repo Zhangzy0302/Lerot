@@ -1,0 +1,4 @@
+module AdjustUnsigned {
+umbrella "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ios_sdk/AdjustUnsigned/include"
+export *
+}

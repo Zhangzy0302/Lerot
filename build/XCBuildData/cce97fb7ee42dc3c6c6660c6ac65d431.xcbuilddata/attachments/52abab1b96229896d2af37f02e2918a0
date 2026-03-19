@@ -1,0 +1,4 @@
+module GoogleUtilities_Network {
+umbrella "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Network/Public"
+export *
+}

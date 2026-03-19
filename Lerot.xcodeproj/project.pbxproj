@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DDB1F96A2F6BCDC0005364B7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DDB1F9692F6BCDC0005364B7 /* Alamofire */; };
+		DDB1F96D2F6BCDDD005364B7 /* ScreenShield in Frameworks */ = {isa = PBXBuildFile; productRef = DDB1F96C2F6BCDDD005364B7 /* ScreenShield */; };
 		DDC328192F308EC900E1673F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC328182F308EC900E1673F /* Launch Screen.storyboard */; };
-		DDC360002F39F3BA00A22BD1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DDC35FFF2F39F3BA00A22BD1 /* Alamofire */; };
+		DDC42DAF2F6BCDF70075DBB3 /* AdjustSdk in Frameworks */ = {isa = PBXBuildFile; productRef = DD96D7072F6B9D3000239D96 /* AdjustSdk */; };
+		DDF84B1D2F6BD11D00C3ADF6 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = DDF84B1C2F6BD11D00C3ADF6 /* FacebookBasics */; };
+		DDF84B1F2F6BD11D00C3ADF6 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = DDF84B1E2F6BD11D00C3ADF6 /* FacebookCore */; };
+		DDF84BB42F6BD36B00C3ADF6 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = DDF84BB32F6BD36B00C3ADF6 /* FacebookAEM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,22 +43,35 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		DDC327742F30779200E1673F /* Frameworks */ = {
+		DD6CC9192F6BCCA80032ED12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDC360002F39F3BA00A22BD1 /* Alamofire in Frameworks */,
+				DDF84BB42F6BD36B00C3ADF6 /* FacebookAEM in Frameworks */,
+				DDF84B1F2F6BD11D00C3ADF6 /* FacebookCore in Frameworks */,
+				DDC42DAF2F6BCDF70075DBB3 /* AdjustSdk in Frameworks */,
+				DDF84B1D2F6BD11D00C3ADF6 /* FacebookBasics in Frameworks */,
+				DDB1F96A2F6BCDC0005364B7 /* Alamofire in Frameworks */,
+				DDB1F96D2F6BCDDD005364B7 /* ScreenShield in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD6CC91A2F6BCCCB0032ED12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DDC3276E2F30779200E1673F = {
 			isa = PBXGroup;
 			children = (
 				DDC328182F308EC900E1673F /* Launch Screen.storyboard */,
 				DDC327792F30779200E1673F /* Lerot */,
+				DD6CC91A2F6BCCCB0032ED12 /* Frameworks */,
 				DDC327782F30779200E1673F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,8 +92,8 @@
 			buildConfigurationList = DDC327852F30779200E1673F /* Build configuration list for PBXNativeTarget "Lerot" */;
 			buildPhases = (
 				DDC327732F30779200E1673F /* Sources */,
-				DDC327742F30779200E1673F /* Frameworks */,
 				DDC327752F30779200E1673F /* Resources */,
+				DD6CC9192F6BCCA80032ED12 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -86,7 +104,23 @@
 			);
 			name = Lerot;
 			packageProductDependencies = (
-				DDC35FFF2F39F3BA00A22BD1 /* Alamofire */,
+				DD96D7052F6B9D3000239D96 /* AdjustGoogleOdm */,
+				DD96D7072F6B9D3000239D96 /* AdjustSdk */,
+				DD96D7092F6B9D3000239D96 /* AdjustUnsigned */,
+				DD96D70B2F6B9D3000239D96 /* AdjustWebBridge */,
+				DDA78AB72F6BC51B0008C4C3 /* AdjustGoogleOdm */,
+				DDA78AB92F6BC51B0008C4C3 /* AdjustSdk */,
+				DDA78ABB2F6BC51B0008C4C3 /* AdjustUnsigned */,
+				DDA78ABD2F6BC51B0008C4C3 /* AdjustWebBridge */,
+				DDE93ED42F6BCA1300E6C2C8 /* AdjustGoogleOdm */,
+				DDE93ED62F6BCA1300E6C2C8 /* AdjustSdk */,
+				DDE93ED82F6BCA1300E6C2C8 /* AdjustUnsigned */,
+				DDE93EDA2F6BCA1300E6C2C8 /* AdjustWebBridge */,
+				DDB1F9692F6BCDC0005364B7 /* Alamofire */,
+				DDB1F96C2F6BCDDD005364B7 /* ScreenShield */,
+				DDF84B1C2F6BD11D00C3ADF6 /* FacebookBasics */,
+				DDF84B1E2F6BD11D00C3ADF6 /* FacebookCore */,
+				DDF84BB32F6BD36B00C3ADF6 /* FacebookAEM */,
 			);
 			productName = Lerot;
 			productReference = DDC327772F30779200E1673F /* Lerot.app */;
@@ -117,7 +151,10 @@
 			mainGroup = DDC3276E2F30779200E1673F;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */,
+				DDB1F9682F6BCDC0005364B7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DDB1F96B2F6BCDDD005364B7 /* XCRemoteSwiftPackageReference "ScreenShield" */,
+				DDF84B192F6BD11D00C3ADF6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDC327782F30779200E1673F /* Products */;
@@ -275,9 +312,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lerot/Lerot.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lerot/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -298,7 +336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leaivnwiuuaocn.Lerot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -313,9 +351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Lerot/Lerot.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Lerot/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
@@ -336,7 +375,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.leaivnwiuuaocn.Lerot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -370,21 +409,117 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		DDB1F9682F6BCDC0005364B7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
-				kind = exactVersion;
-				version = 5.8.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
+		DDB1F96B2F6BCDDD005364B7 /* XCRemoteSwiftPackageReference "ScreenShield" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JayantBadlani/ScreenShield.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+		DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adjust/ios_sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DDF84B192F6BD11D00C3ADF6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DDC35FFF2F39F3BA00A22BD1 /* Alamofire */ = {
+		DD96D7052F6B9D3000239D96 /* AdjustGoogleOdm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DDC35FFE2F39F3BA00A22BD1 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AdjustGoogleOdm;
+		};
+		DD96D7072F6B9D3000239D96 /* AdjustSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustSdk;
+		};
+		DD96D7092F6B9D3000239D96 /* AdjustUnsigned */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustUnsigned;
+		};
+		DD96D70B2F6B9D3000239D96 /* AdjustWebBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustWebBridge;
+		};
+		DDA78AB72F6BC51B0008C4C3 /* AdjustGoogleOdm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustGoogleOdm;
+		};
+		DDA78AB92F6BC51B0008C4C3 /* AdjustSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustSdk;
+		};
+		DDA78ABB2F6BC51B0008C4C3 /* AdjustUnsigned */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustUnsigned;
+		};
+		DDA78ABD2F6BC51B0008C4C3 /* AdjustWebBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdjustWebBridge;
+		};
+		DDB1F9692F6BCDC0005364B7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDB1F9682F6BCDC0005364B7 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DDB1F96C2F6BCDDD005364B7 /* ScreenShield */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDB1F96B2F6BCDDD005364B7 /* XCRemoteSwiftPackageReference "ScreenShield" */;
+			productName = ScreenShield;
+		};
+		DDE93ED42F6BCA1300E6C2C8 /* AdjustGoogleOdm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustGoogleOdm;
+		};
+		DDE93ED62F6BCA1300E6C2C8 /* AdjustSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustSdk;
+		};
+		DDE93ED82F6BCA1300E6C2C8 /* AdjustUnsigned */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustUnsigned;
+		};
+		DDE93EDA2F6BCA1300E6C2C8 /* AdjustWebBridge */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE93ED32F6BCA1300E6C2C8 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustWebBridge;
+		};
+		DDF84B1C2F6BD11D00C3ADF6 /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDF84B192F6BD11D00C3ADF6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		DDF84B1E2F6BD11D00C3ADF6 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDF84B192F6BD11D00C3ADF6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		DDF84BB32F6BD36B00C3ADF6 /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDF84B192F6BD11D00C3ADF6 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

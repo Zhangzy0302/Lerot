@@ -1,0 +1,4 @@
+module ScreenShield {
+header "ScreenShield-Swift.h"
+export *
+}

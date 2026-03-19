@@ -1,0 +1,4 @@
+module AdjustSdk {
+umbrella header "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/ios_sdk/Adjust/include/AdjustSdk/AdjustSdk.h"
+export *
+}

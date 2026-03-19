@@ -44,27 +44,29 @@ struct OwuqcWallet: View {
                     .padding(.horizontal, 20)
                 ScrollView {
                     LazyVGrid(columns: owquColumes, spacing: 14) {
-                        ForEach(ghuencziwProducts, id: \.self.lakcqlkKeyId) { woajc in
+                        ForEach(bjealALiwlProducst, id: \.self.lakcqlkKeyId) { woajc in
                             QowajmWalletItem(oqiqanItem: woajc)
                                 .onTapGesture {
                                     Task {
-                                        let result = await laoqjzWalletVM.cmeuoALwlnRecharge(woajc)
+                                        laoqjzWalletVM.cmeuoALwlnRecharge(woajc.lakcqlkKeyId) { resultStatus in
+                                            switch resultStatus {
 
-                                        switch result {
+                                            case .success(let diamond):
+                                                owqucnqUserVM.increaseUserDiamond(diamond: diamond)
+                                                LealoeoHUD.success("Purchase success")
 
-                                        case .success(let diamond):
-                                            owqucnqUserVM.increaseUserDiamond(diamond: diamond)
-                                            LealoeoHUD.success("Purchase success")
+                                            case .cancelled:
+                                                LealoeoHUD.toast("Purchase cancelled")
 
-                                        case .cancelled:
-                                            LealoeoHUD.toast("Purchase cancelled")
+                                            case .pending:
+                                                return
 
-                                        case .pending:
-                                            LealoeoHUD.toast("Purchase pending, please wait")
-
-                                        case .failed(let message):
-                                            LealoeoHUD.error(message)
+                                            case .failed(let message):
+                                                LealoeoHUD.error(message)
+                                            }
                                         }
+
+                                        
                                     }
                                 }
                         }

@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary.swiftconstvalues",
+    "dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary.d",
+    "diagnostics" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary.dia",
+    "emit-module-dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary-emit-module.dia",
+    "pch" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/FacebookLogin-primary.swiftdeps"
+  },
+  "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/Sources/FacebookLogin/Exports.swift" : {
+    "index-unit-output-path" : "/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/Exports.o",
+    "llvm-bc" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/Exports.bc",
+    "object" : "/Users/yangyang/Library/Developer/Xcode/DerivedData/Lerot-bwmpjqpxsyajcdacbykvictuogmr/SourcePackages/checkouts/facebook-ios-sdk/build/Facebook.build/Release-iphoneos/FacebookLogin.build/Objects-normal/arm64/Exports.o"
+  }
+}

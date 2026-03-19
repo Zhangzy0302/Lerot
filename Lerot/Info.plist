@@ -2,21 +2,52 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>lerot.com</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>lerot</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1442833067429499</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1442833067429499</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
+	<key>FacebookClientToken</key>
+	<string>19010ec70fc3b24051a77d1394cc2416</string>
+	<key>FacebookDisplayName</key>
+	<string>Lerot</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>instagram</string>
+		<string>fb</string>
+		<string>tiktok</string>
+		<string>comgooglemaps</string>
+		<string>tweetie</string>
+		<string>wechat</string>
+		<string>alipay</string>
+		<string>mqq</string>
+		<string>itms-apps</string>
+		<string>itms-services</string>
+	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-  <key>NSCameraUsageDescription</key>
-	<string>This app requires the use of your camera to take photos and record videos. All the captured content will be securely stored on your personal device, and it will only be uploaded or shared with your explicit consent.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs to access your location information to provide more personalized services. We promise that your location data will be strictly confidential and will only be used with your explicit authorization to enhance your user experience.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs to access your location information to provide more personalized services. We promise that your location data will be strictly confidential and will only be used with your explicit authorization to enhance your user experience.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>This app needs to access your microphone to record audio for voice chat functionality. We will only access and use the recorded audio content with your explicit consent.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app needs to access your album data so that you can select and upload videos or pictures for updating your profile picture or posting your works. We will only use the files you actively select for the authorized purposes, and all selected files will be securely stored on your device or shared solely with your explicit consent.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Baigo-Regular.ttf</string>
@@ -24,5 +55,18 @@
 		<string>MiSans-Semibold.ttf</string>
 		<string>Neoneon.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UNUserNotificationCenter</key>
+	<dict>
+		<key>UNAuthorizationOptions</key>
+		<array>
+			<string>alert</string>
+		</array>
+	</dict>
 </dict>
 </plist>
