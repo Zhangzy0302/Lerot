@@ -104,9 +104,9 @@
 			);
 			name = Lerot;
 			packageProductDependencies = (
-				DD96D7072F6B9D3000239D96 /* AdjustSdk */,
 				DDB1F9692F6BCDC0005364B7 /* Alamofire */,
 				DDB1F96C2F6BCDDD005364B7 /* ScreenShield */,
+				DDF84D602F6BE45C00C3ADF6 /* AdjustSdk */,
 				DDC6B7272F6BE5490094EAC3 /* FacebookAEM */,
 				DDC6B7292F6BE5490094EAC3 /* FacebookBasics */,
 				DDC6B72B2F6BE5490094EAC3 /* FacebookCore */,
